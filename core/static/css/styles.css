@@ -1,5 +1,128 @@
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-  }
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0;
+}
+.topnav {
+  position: fixed;
+  background-color: #333;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+.topnav a {
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  transition-duration: 500ms;
+  position: relative;
+  color: #ddd;
+}
+.topnav a.active::after,
+.topnav a.active:hover::after {
+  background-color: #ddd;
+  color: black;
+  transform: scaleX(1);
+}
+.topnav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ddd;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.topnav a:hover::after {
+  background-color: #ddd;
+  color: black;
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+header {
+  font-family: Arial, Helvetica, sans-serif; 
+  padding: 60px;
+  padding-top: 90px;
+  text-align: center;
+  background-color: #555;
+  color: white;
+  font-size: 30px;
+}
+.list-group{
+	width: 400px !important;
+
+}
+
+.list-group-item{
+	margin-top:10px;
+	border-radius: none; 
+	background: #5E35B1;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+
+.list-group-item:hover{
+	transform: scaleX(1.1);
+}
+
+
+
+.check{
+	opacity: 0;
+	transition: all 0.6s ease-in-out;
+}
+
+.list-group-item:hover .check {
+	opacity: 1;
+
+}
+
+.about span{
+	font-size: 12px;
+	margin-right: 10px;
+
+}
+
+input[type=checkbox] {
+         position: relative;
+	       cursor: pointer;
+    }
+    input[type=checkbox]:before {
+         content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0px;
+    left: 0;
+    border: 1px solid #10a3f9;
+    border-radius: 3px;
+    background-color: white;
+
+}
+    input[type=checkbox]:checked:after {
+         content: "";
+    display: block;
+    width: 7px;
+    height: 12px;
+    border: solid #007bff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+   }
+
+  input[type="checkbox"]:checked + .check { opacity: 1; }
