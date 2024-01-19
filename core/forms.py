@@ -1,13 +1,11 @@
 from django import forms
+from .models import Application
 
 # import the standard Django Forms 
 # from built-in library 
     
 # creating a form   
-class InputForm(forms.Form):  
-    first_name = forms.CharField(max_length = 200)  
-    last_name = forms.CharField(max_length = 200)  
-    roll_number = forms.IntegerField(  
-                     help_text = "Enter 6 digit roll number"
-                     )  
-    password = forms.CharField(widget = forms.PasswordInput())  
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['First_Name', 'Last_Name','LinkedIn', 'Email', 'Phone_Num', 'Text', 'resume']
