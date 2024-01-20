@@ -1,89 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Registration</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous">
-        <script src="https://unpkg.com/@popperjs/core@2"></script>
-        <!-- Add additional CSS in static file -->
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-        <style>
-            .formcont {
-                margin-top:10px;
-                border: 2px solid #333;
-                padding: 20px;
-                background: #fff;
-            }
-            .btn-outline-dark:hover {
-                background-color: blue;
-            }
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                display: none;
-                -webkit-appearance: none;
-                margin: 0;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container text-center">
-            <div class="row">
-                <h1>Regestration Form</h1>
-            </div>
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- Add additional CSS in static file -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <style>
+        .formcont {
+            margin-top:10px;
+            border: 2px solid #333;
+            padding: 20px;
+            background: #fff;
+        }
+        .btn-outline-dark:hover {
+            background-color: blue;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            display: none;
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row">
+            <h1>Registration Form</h1>
         </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6">
-                    <div class="formcont">
-                        <form method="POST" action="{% url 'application' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="inpub-group mb-3">
-                                <div class="row g2">
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="First_Name" placeholder="John" required>
-                                            <label for="First_Name">First Name *</label>
-                                        </div>
+    </div>
+    <div class="container" style="margin-bottom: 1.25rem;">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="formcont">
+                    <form method="POST" action="{% url 'application' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3 custom-select">
+                            <label for="pdfSubmission" class="form-label">Select Role:</label>
+                            <select id="pdfSubmission" onchange="showRoleDropdown()" class="form-select">
+                                <option value="default">Default</option>
+                                <option value="dataScientist">Data Scientist</option>
+                                <option value="productDesignEngineer">Product Design Engineer</option>
+                                <option value="graphicDesignEngineer">Graphic Design Engineer</option>
+                                <option value="marketingAdvisor">Marketing Advisor</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="row g-2">
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="First_Name" placeholder="John" required>
+                                        <label for="First_Name">First Name *</label>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="Last_Name" placeholder="Doe" required>
-                                            <label for="Last_Name">Last Name *</label>
-                                        </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="Last_Name" placeholder="Doe" required>
+                                        <label for="Last_Name">Last Name *</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="url" class="form-control" id="LinkedIn" placeholder="www.linkedin.com/in/">
-                                <label for="LinkedIn">LinkedIn Profile URL</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="url" class="form-control" id="LinkedIn" placeholder="www.linkedin.com/in/">
+                            <label for="LinkedIn">LinkedIn Profile URL</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="Email" placeholder="name@example.com" required>
+                            <label for="Email">Email *</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="Phone_Num" placeholder="0123456789" min="0" step="1" onkeydown="javascript: return event.keyCode == 69 ? false : true">
+                            <label for="Phone_Num">Phone Number</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="Text" style="height: 100px"></textarea>
+                            <label for="Text">Anything else we should know?</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Resume" class="form-label">Resume (optional)</label>
+                            <input class="form-control" type="file" id="Resume" accept=".pdf">
+                            <div class="form-text" id="Resume">PDF only</div>
+                        </div>
+                        
+                        <div id="pdfSubmissionDropdown">
+                            <!-- Additional fields for the selected role -->
+                            <div id="dataScientistFields" style="display: none;">
+                                <label for="dataScientistField">Data Scientist Challange: Look at the resources in this
+                                     <a href="https://drive.google.com/drive/folders/1MRmsQvmj1NlJfvf29ZZGe1qRpYxGxtUi">link.</a>
+                                        Analyze the data and provide analyses and recommendations about the
+                                        opportunities and challenges facing the business. Not all datasets need to be included in the
+                                        analysis and you are encouraged to include outside research.
+                                    :</label>
+                                <div class="mb-3">
+                                    <label for="dataScientistSubmission" class="form-label"> </label>
+                                    <input class="form-control" type="file" id="dataScientistSubmission" accept=".pdf">
+                                    <div class="form-text" id="dataScientistSubmission">PDF only</div>
+                                </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="Email" placeholder="name@example.com" required>
-                                <label for="Email">Email *</label>
+                            <div id="productDesignEngineerFields" style="display: none;">
+                                <label for="productDesignEngineerField">Product Design Engineer Field:</label>
+                                <div class="mb-3">
+                                    <label for="productDesignEngineerSubmission" class="form-label">Product Design Engineer Submission:</label>
+                                    <input class="form-control" type="file" id="productDesignEngineerSubmission" accept=".pdf">
+                                    <div class="form-text" id="productDesignEngineerSubmission">PDF only</div>
+                                </div>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="Phone_Num" placeholder="0123456789" min="0" step="1" onkeydown="javascript: return event.keyCode == 69 ? false : true">
-                                <label for="Phone_Num">Phone Number</label>
+                            <div id="graphicDesignEngineerFields" style="display: none;">
+                                <label for="graphicDesignEngineerField">Graphic Design Engineer Field:</label>
+                                <div class="mb-3">
+                                    <label for="graphicDesignEngineerSubmission" class="form-label">Graphic Design Engineer Submission:</label>
+                                    <input class="form-control" type="file" id="graphicDesignEngineerSubmission" accept=".pdf">
+                                    <div class="form-text" id="graphicDesignEngineerSubmission">PDF only</div>
+                                </div>
                             </div>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="Text" style="height: 100px"></textarea>
-                                <label for="Text">Anything else we should know?</label>
+                            <div id="marketingAdvisorFields" style="display: none;">
+                                <label for="marketingAdvisorField">Marketing Advisor Field:</label>
+                                <div class="mb-3">
+                                    <label for="marketingAdvisorSubmission" class="form-label">Marketing Advisor Submission:</label>
+                                    <input class="form-control" type="file" id="marketingAdvisorSubmission" accept=".pdf">
+                                    <div class="form-text" id="marketingAdvisorSubmission">PDF only</div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="Resume" class="form-label">Resume (optional)</label>
-                                <input class="form-control" type="file" id="Resume" accept=".pdf">
-                                <div class="form-text" id="Resume">PDF only</div>
-                            </div>
-                            <button class="btn btn-outline-dark" type="submit">Submit</button>
-                        </form>
-                    </div>
+                            <!-- Add other role-specific fields here -->
+                        </div>
+                        <button class="btn btn-outline-dark" type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    <script>
+        function showRoleDropdown() {
+            var pdfSubmissionDropdown = document.getElementById("pdfSubmissionDropdown");
+            var selectedOption = document.getElementById("pdfSubmission").value;
+            var dataScientistFields = document.getElementById("dataScientistFields");
+            var productDesignEngineerFields = document.getElementById("productDesignEngineerFields");
+            var graphicDesignEngineerFields = document.getElementById("graphicDesignEngineerFields");
+            var marketingAdvisorFields = document.getElementById("marketingAdvisorFields");
+
+            // Hide all additional fields initially
+            dataScientistFields.style.display = "none";
+            productDesignEngineerFields.style.display = "none";
+            graphicDesignEngineerFields.style.display = "none";
+            marketingAdvisorFields.style.display = "none";
+
+            // Show additional fields based on the selected option
+            if (selectedOption === "dataScientist") {
+                dataScientistFields.style.display = "block";
+            } else if (selectedOption === "productDesignEngineer") {
+                productDesignEngineerFields.style.display = "block";
+            } else if (selectedOption === "graphicDesignEngineer") {
+                graphicDesignEngineerFields.style.display = "block";
+            } else if (selectedOption === "marketingAdvisor") {
+                marketingAdvisorFields.style.display = "block";
+            }
+            // Add more conditions for other options as needed
+
+            // Rest of your code...
+        }
+    </script>
+</body>
 </html>
