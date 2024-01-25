@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Add additional CSS in static file -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}" /> {% endcomment %}
   </head>
   <style>
     .list-group{
@@ -19,7 +19,7 @@
     }
     .list-group-item{
       margin-top:10px;
-      border: 2px solid #f15623;
+      border: 2px solid #777;
       padding: 20px;
       background: #151411;
       color: #fff;
@@ -34,14 +34,21 @@
     .list-group-item:hover{
       transform: scaleX(1.1);
       background: #333;
+      border: 2px solid #f15623;
     }
     .about span{
       font-size: 12px;
       margin-right: 10px;
     }
+    .img-fluid {
+      transition: all 0.3s ease-in-out;
+    }
+    .img-fluid:hover{
+      transform: scale(1.04);
+    }
   </style>
   <body>
-    <div class="container-fluid" style="background-color: #151411; color: #fff;">
+    <div class="container-fluid" style="background-color: #151411; color: #fff; min-height: 200vh;">
       {% block content %}
       {% endblock %}
     </div>

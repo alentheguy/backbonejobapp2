@@ -10,6 +10,31 @@ def index(request):
 def datascientist(request):
     return render(request, 'datascientist.html')
 
+def graphicdesigner(request):
+    return render(request, 'graphicdesigner.html')
+
+def mobileappdev(request):
+    return render(request, 'mobileappdev.html')
+
+def socialmedmarketer(request):
+    return render(request, 'socialmedmarketer.html')
+
+def productdesigner(request):
+    return render(request, 'productdesigner.html')
+
+def sensoftengios(request):
+    return render(request, 'sensoftengios.html')
+
+def senuserexpresearch(request):
+    return render(request, 'senuserexpresearch.html')
+
+def softwareengineer(request):
+    return render(request, 'softwareengineer.html')
+
+def electricengineer(request):
+    return render(request, 'electricengineer.html')
+
+
 def application(request):
     if request.method == 'POST':
         First_Name = request.POST.get('First_Name')

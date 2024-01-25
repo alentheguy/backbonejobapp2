@@ -1,25 +1,43 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
-<div class="container text-center">
+
+<div class="container-fluid" style="padding-left: 0; padding-right: 0;">
     <div class="row">
-        <h1>Open Positions</h1>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-
-        <div class="col-12 col-md-6">
-            <h3>About the company</h3>
-
-            <p>Backbone's vision is to become the platform for core gaming on mobile devices, allowing anyone to access and play games anywhere.</p>
-
-            <p>Similar to Roku, Backbone is a universal platform for game streaming and, more broadly, core gaming on mobile. Players use it to enjoy App Store games, Xbox Game Pass, PlayStation Remote Play and more through compelling gameplay, content creation, and community.</p>
-
-            <p>It's backed by Index, the same investor behind Discord, Roblox, and Rec Room, as well as companies like Figma and Robinhood.</p>
+        <div class="col">
+            <div class="row">
+                <div class="col-12 col-md-6" style="background-color: #555;">
+                    <img src="{% static 'images/backboneblackcontroller.png' %}" class="img-fluid" alt="Controller">
+                </div>
+                <div class="col-12 col-md-6 text-center" style="background-color: #111;">
+                    <p class="p-5 lead">Backbone's vision is to become the platform for core gaming on mobile devices, allowing anyone to access and play games anywhere.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 text-center" style="background-color: #333;">
+                    <p class="p-5 lead">Similar to Roku, Backbone is a universal platform for game streaming and, more broadly, core gaming on mobile. Players use it to enjoy App Store games, Xbox Game Pass, PlayStation Remote Play and more through compelling gameplay, content creation, and community.</p>
+                </div>
+                <div class="col-12 col-md-6" style="background-color: #444;">
+                    <img src="{% static 'images/backbonewhitecontroller.png' %}" class="img-fluid" alt="Controller">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6" style="background-color: #666;">
+                    <img src="{% static 'images/backboneblackgamingcontroller.png' %}" class="img-fluid" alt="Controller">
+                </div>
+                <div class="col-12 col-md-6 text-center" style="background-color: #222;">
+                    <p class="p-5 lead">It's backed by Index, the same investor behind Discord, Roblox, and Rec Room, as well as companies like Figma and Robinhood.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="col-12 col-md-6">
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <h1 class="display-1 p-5">BackBone Positions</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center" style="margin-bottom: 1.25rem;">
+        <div class="col-8" style>
             <div class="container d-flex justify-content-center">
                 <ul class="list-group mt-5 text-white">
                     <a href="{% url 'datascientist' %}">
@@ -28,112 +46,103 @@
                                 <div class="ml-2">
                                     <h6 class="mb-0">Data Scientist</h6>
                                     <div class="about">
-                                        <span>22 Files</span>
-                                        <span>Jan 21, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{% url 'graphicdesigner' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Lead Product Design Engineer</h6>
+                                    <h6 class="mb-0">Graphic Designer</h6>
                                     <div class="about">
-                                        <span>62 Files</span>
-                                        <span>Jan 22, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{% url 'mobileappdev' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Product Design Engineer</h6>
+                                    <h6 class="mb-0">Mobile App Developer</h6>
                                     <div class="about">
-                                        <span>82 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{% url 'socialmedmarketer' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Product Designer, Software Beyond Mobile</h6>
+                                    <h6 class="mb-0">Social Media Marketer</h6>
                                     <div class="about">
-                                        <span>182 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{% url 'productdesigner' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Product Designer, Web</h6>
+                                    <h6 class="mb-0">Product Designer</h6>
                                     <div class="about">
-                                        <span>802 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    {% comment %} <a href="{% url 'sensoftengios' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Senior Software Engineer, iOS</h6>
+                                    <h6 class="mb-0">Senior Software Engineer</h6>
                                     <div class="about">
-                                        <span>802 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                    </a>
-                    <a href="">
+                    </a> {% endcomment %}
+                    <a href="{% url 'senuserexpresearch' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
                                     <h6 class="mb-0">Senior User Experience Researcher</h6>
                                     <div class="about">
-                                        <span>802 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
                     </a>
-                    <a href="">
+                    {% comment %} <a href="{% url 'softwareengineer' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Software Engineer, Back-End</h6>
+                                    <h6 class="mb-0">Software Engineer</h6>
                                     <div class="about">
-                                        <span>802 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                    </a>
-                    <a href="">
+                    </a> {% endcomment %}
+                    <a href="{% url 'electricengineer' %}">
                         <li class="list-group-item d-flex justify-content-between align-content-center">
                             <div class="d-flex flex-row">
                                 <div class="ml-2">
-                                    <h6 class="mb-0">Software Engineer, Front-End</h6>
+                                    <h6 class="mb-0">Electric Engineer</h6>
                                     <div class="about">
-                                        <span>802 Files</span>
-                                        <span>Jan 29, 2020</span>
+                                        <span></span>
                                     </div>
                                 </div>
                             </div>
