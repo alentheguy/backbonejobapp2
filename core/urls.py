@@ -12,5 +12,7 @@ urlpatterns = [
     path('userexpre/', views.senuserexpresearch, name='senuserexpresearch'),
     path('eng-back/', views.softwareengineer, name='softwareengineer'),
     path('eng-front/', views.electricengineer, name='electricengineer'),
+    path('benefits/', views.benefits, name='benefits'),
+    path('success/', views.successapply, name='successapply'),
     path('regester/', views.application, name='application'),
 ]

@@ -34,6 +34,11 @@ def softwareengineer(request):
 def electricengineer(request):
     return render(request, 'electricengineer.html')
 
+def benefits(request):
+    return render(request, 'benefits.html')
+
+def successapply(request):
+    return render(request, 'successapply.html')
 
 def application(request):
     if request.method == 'POST':
@@ -44,12 +49,13 @@ def application(request):
         Phone_Num = request.POST.get('Phone_Num')
         Text = request.POST.get('Text')
         Resume = request.POST.get('Resume')
+        Challenge = request.POST.get('Challenge')
         # Process other form fields as needed
 
         # Create an instance of the model and save it to the database
-        application_instance = Application(First_Name=First_Name, Last_Name=Last_Name, LinkedIn=LinkedIn, Email=Email, Phone_Num=Phone_Num, Text=Text, Resume=Resume)
-        application_instance.save()
+        application_instance = Application(First_Name=First_Name, Last_Name=Last_Name, LinkedIn=LinkedIn, Email=Email, Phone_Num=Phone_Num, Text=Text, Resume=Resume, Challenge=Challenge)
+        #application_instance.save()
 
-        return redirect('index.html')
+        return redirect('successapply')
 
     return render(request, 'application.html')
