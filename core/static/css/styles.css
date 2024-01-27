@@ -41,14 +41,6 @@ body {
   background-color: #333;
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
 }
-@keyframes moveUpDown {
-  0% {
-    top: 70%; /* Start position */
-  }
-  100% {
-    top: 73%; /* End position */
-  }
-}
 .formcont {
   margin-top: 10px;
   border: 2px solid #333;
@@ -59,4 +51,12 @@ input::-webkit-inner-spin-button {
   display: none;
   -webkit-appearance: none;
   margin: 0;
+}
+@keyframes moveUpDown {
+  0% {
+    top: 0%; /* Start position */
+  }
+  100% {
+    top: 3%; /* End position */
+  }
 }
