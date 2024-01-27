@@ -22,14 +22,8 @@ def socialmedmarketer(request):
 def productdesigner(request):
     return render(request, 'productdesigner.html')
 
-def sensoftengios(request):
-    return render(request, 'sensoftengios.html')
-
 def senuserexpresearch(request):
     return render(request, 'senuserexpresearch.html')
-
-def softwareengineer(request):
-    return render(request, 'softwareengineer.html')
 
 def electricengineer(request):
     return render(request, 'electricengineer.html')

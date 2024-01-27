@@ -1,16 +1,22 @@
+<!-- Position Bio Template. -->
 {% extends "base_generic.html" %}
 {% block content %}
+    <!-- Main content block -->
     <div class="container text-center">
         <div class="row">
+            <!-- Heading for specific position -->
             <h1 class="display-1 p-5">{% block position %}{% endblock %}</h1>
         </div>
     </div>
+    <!-- Container for additional content -->
     <div class="container" style="font-weight: 300;">
         <div class="row p-5">
+            <!-- Apply button -->
             <div class="d-grid gap-2">
                 <a href="{% url 'application' %}" class="btn btn-outline-light btn-lg">Apply</a>
             </div>
         </div>
+        <!-- Additional content block (e.g., bio) -->
         <div class="row" style="padding-bottom: 10%;">
             {% block bio %}{% endblock %}
         </div>
