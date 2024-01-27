@@ -11,10 +11,11 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous">
     <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="{% static 'javascript/scripts.js' %}"></script>
     <!-- Add additional CSS in static file -->
     
-    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css' %}" /> {% endcomment %}
-    <style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    {% comment %} <style>
         .formcont {
             margin-top: 10px;
             border: 2px solid #333;
@@ -29,26 +30,22 @@
             -webkit-appearance: none;
             margin: 0;
         }
-    </style>
+    </style> {% endcomment %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">
-          <img src="{% static 'images/backbonelogo.png' %}" alt="Logo" width="30" height="30">
-          Backbone
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'index' %}">Home</a>
-            {% block topnav %}
-            {% endblock %}
-          </div>
+    <nav class="navbar navbar-expand sticky-top bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="{% static 'images/backbonelogo.png' %}" alt="Logo" width="30" height="30">
+                Backbone
+            </a>
+            <div class="navbar z-3" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'index' %}" aria-current="page">Home</a>
+                <a class="nav-link" href="{% url 'companybio' %}">Company</a>
+            </div>
+            </div>
         </div>
-      </div>
     </nav>
     <div class="container-fluid">
         <div class="container text-center">
@@ -152,14 +149,14 @@
                                 <!-- Add other role-specific fields here -->
                             </div>
                             <button class="btn btn-outline-light" type="submit">Submit</button>
-                            <a href="{{request.META.HTTP_REFERER|escape}}" class="p-3">back</a>
+                            <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
+    {% comment %} <script>
         function showRoleDropdown() {
             var pdfSubmissionDropdown = document.getElementById("pdfSubmissionDropdown");
             var selectedOption = document.getElementById("pdfSubmission").value;
@@ -188,6 +185,6 @@
 
             // Rest of your code...
         }
-    </script>
+    </script> {% endcomment %}
 </body>
 </html>

@@ -3,34 +3,39 @@
 {% block content %}
 
 <div class="container-fluid">
+    <div class="row justify-content-center" style="background: #151411; min-height: 90vh;">
+        <div class="col-12 p-0 p-md-5 text-center z-0" style="max-width: 100%; relative: absolute; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
+            <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" alt="Controller" style="position: relative; animation: moveUpDown 2.5s ease-in-out infinite alternate;">
+        </div>
+        <div class="col-12 p-5 text-center">
+            <a class="btn btn-outline-light btn-lg" href="#positions">Open Positions</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <div class="row">
-                <div class="col-12 col-md-6" style="background-color: #555;">
+                <div class="col-12 col-md-6" style="background-color: #666;">
                     <img src="{% static 'images/backboneblackcontroller.png' %}" class="img-fluid" alt="Controller">
                 </div>
-                <div class="col-12 col-md-6 text-center" style="background-color: #111;">
+                <div class="col-12 col-md-6 text-center" style="background-color: #222;">
                     <p class="p-5 lead">Backbone's vision is to become the platform for core gaming on mobile devices, allowing anyone to access and play games anywhere.</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 text-center" style="background-color: #333;">
+                <div class="col-12 order-last col-md-6 order-md-first text-center" style="background-color: #333;">
                     <p class="p-5 lead">Similar to Roku, Backbone is a universal platform for game streaming and, more broadly, core gaming on mobile. Players use it to enjoy App Store games, Xbox Game Pass, PlayStation Remote Play and more through compelling gameplay, content creation, and community.</p>
                 </div>
-                <div class="col-12 col-md-6" style="background-color: #444;">
+                <div class="col-12 order-first col-md-6 order-md-last" style="background-color: #444;">
                     <img src="{% static 'images/backbonewhitecontroller.png' %}" class="img-fluid" alt="Controller">
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6" style="background-color: #666;">
+                <div class="col-12 col-md-6" style="background-color: #555;">
                     <img src="{% static 'images/backboneblackgamingcontroller.png' %}" class="img-fluid" alt="Controller">
                 </div>
-                <div class="col-12 col-md-6 text-center" style="background-color: #222;">
+                <div class="col-12 col-md-6 text-center" style="background-color: #111;">
                     <p class="p-5 lead">It's backed by Index, the same investor behind Discord, Roblox, and Rec Room, as well as companies like Figma and Robinhood.</p>
                 </div>
-            </div>
-            <div class="row" style="max-width: 100%;">
-                <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" alt="Controller">
             </div>
         </div>
     </div>
@@ -42,7 +47,7 @@
     </div>
     <div class="container text-center">
         <div class="row">
-            <h1 class="display-1 p-5">Backbone Positions</h1>
+            <h1 class="display-1 p-5" id="positions">Backbone Positions</h1>
         </div>
     </div>
     <div class="row justify-content-center">

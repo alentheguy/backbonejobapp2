@@ -40,6 +40,9 @@ def benefits(request):
 def successapply(request):
     return render(request, 'successapply.html')
 
+def companybio(request):
+    return render(request, 'companybio.html')
+
 def application(request):
     if request.method == 'POST':
         First_Name = request.POST.get('First_Name')

@@ -14,5 +14,6 @@ urlpatterns = [
     path('eng-front/', views.electricengineer, name='electricengineer'),
     path('benefits/', views.benefits, name='benefits'),
     path('success/', views.successapply, name='successapply'),
+    path('company/', views.companybio, name='companybio'),
     path('regester/', views.application, name='application'),
 ]
