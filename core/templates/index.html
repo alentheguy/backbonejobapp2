@@ -1,173 +1,145 @@
 {% extends "base_generic.html" %}
 {% load static %}
 {% block content %}
-
-<div class="container-fluid">
-    <div class="row justify-content-center" style="background: #151411; min-height: 90vh;">
-        <div class="col-12 p-0 p-md-5 text-center z-0" style="max-width: 100%; relative: absolute; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
-            <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" alt="Controller" style="position: relative; animation: moveUpDown 2.5s ease-in-out infinite alternate;">
-        </div>
-        <div class="col-12 p-5 text-center">
-            <a class="btn btn-outline-light btn-lg" href="#positions">Open Positions</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col-12 col-md-6" style="background-color: #666;">
-                    <img src="{% static 'images/backboneblackcontroller.png' %}" class="img-fluid" alt="Controller">
-                </div>
-                <div class="col-12 col-md-6 text-center" style="background-color: #222;">
-                    <p class="p-5 lead">Backbone's vision is to become the platform for core gaming on mobile devices, allowing anyone to access and play games anywhere.</p>
-                </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center" style="background: #151411; min-height: 90vh;">
+            <div class="col-12 p-0 p-md-5 text-center z-0" style="max-width: 100rem; relative: absolute; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
+                <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" alt="Controller" style="position: relative; animation: moveUpDown 2.5s ease-in-out infinite alternate;">
             </div>
-            <div class="row">
-                <div class="col-12 order-last col-md-6 order-md-first text-center" style="background-color: #333;">
-                    <p class="p-5 lead">Similar to Roku, Backbone is a universal platform for game streaming and, more broadly, core gaming on mobile. Players use it to enjoy App Store games, Xbox Game Pass, PlayStation Remote Play and more through compelling gameplay, content creation, and community.</p>
-                </div>
-                <div class="col-12 order-first col-md-6 order-md-last" style="background-color: #444;">
-                    <img src="{% static 'images/backbonewhitecontroller.png' %}" class="img-fluid" alt="Controller">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6" style="background-color: #555;">
-                    <img src="{% static 'images/backboneblackgamingcontroller.png' %}" class="img-fluid" alt="Controller">
-                </div>
-                <div class="col-12 col-md-6 text-center" style="background-color: #111;">
-                    <p class="p-5 lead">It's backed by Index, the same investor behind Discord, Roblox, and Rec Room, as well as companies like Figma and Robinhood.</p>
-                </div>
+            <div class="col-12 p-5 text-center">
+                <a class="btn btn-outline-light btn-lg" href="#positions">Open Positions</a>
             </div>
         </div>
-    </div>
-    <div class="container text-center">
-        <p class="p-5 lead">On this page, we are offering an opportunity to apply for an open position at Backbone. We hope you consider sending us an application so you can join the team and help do great things!</p>
-        <div class="d-grid gap-2">
-            <a href="{% url 'benefits' %}" class="btn btn-outline-light btn-lg">Why work for Backbone?</a>
-        </div>
-    </div>
-    <div class="container text-center">
         <div class="row">
-            <h1 class="display-1 p-5" id="positions">Backbone Positions</h1>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 col-md-6" style="background-color: #666;">
+                        <img src="{% static 'images/backboneblackcontroller.png' %}" class="img-fluid" alt="Controller">
+                    </div>
+                    <div class="col-12 col-md-6 text-center" style="background-color: #222;">
+                        <p class="p-5 lead">Backbone's vision is to become the platform for core gaming on mobile devices, allowing anyone to access and play games anywhere.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 order-last col-md-6 order-md-first text-center" style="background-color: #333;">
+                        <p class="p-5 lead">Similar to Roku, Backbone is a universal platform for game streaming and, more broadly, core gaming on mobile. Players use it to enjoy App Store games, Xbox Game Pass, PlayStation Remote Play and more through compelling gameplay, content creation, and community.</p>
+                    </div>
+                    <div class="col-12 order-first col-md-6 order-md-last" style="background-color: #444;">
+                        <img src="{% static 'images/backbonewhitecontroller.png' %}" class="img-fluid" alt="Controller">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6" style="background-color: #555;">
+                        <img src="{% static 'images/backboneblackgamingcontroller.png' %}" class="img-fluid" alt="Controller">
+                    </div>
+                    <div class="col-12 col-md-6 text-center" style="background-color: #111;">
+                        <p class="p-5 lead">It's backed by Index, the same investor behind Discord, Roblox, and Rec Room, as well as companies like Figma and Robinhood.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-8" style>
-            <div class="container d-flex justify-content-center">
-                <ul class="list-group mt-5 text-white">
-                    <a href="{% url 'datascientist' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Data Scientist</h6>
-                                    <div class="about">
-                                        <span></span>
+        <div class="container text-center">
+            <p class="p-5 lead">On this page, we are offering an opportunity to apply for an open position at Backbone. We hope you consider sending us an application so you can join the team and help do great things!</p>
+            <div class="d-grid gap-2">
+                <a href="{% url 'benefits' %}" class="btn btn-outline-light btn-lg">Why work for Backbone?</a>
+            </div>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <h1 class="display-1 p-5" id="positions">Backbone Positions</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="padding-bottom: 10%;">
+            <div class="col-8" style>
+                <div class="container d-flex justify-content-center">
+                    <ul class="list-group mt-5 text-white">
+                        <a href="{% url 'datascientist' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Data Scientist</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="{% url 'graphicdesigner' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Graphic Designer</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'graphicdesigner' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Graphic Designer</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="{% url 'mobileappdev' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Mobile App Developer</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'mobileappdev' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Mobile App Developer</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="{% url 'socialmedmarketer' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Social Media Marketer</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'socialmedmarketer' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Social Media Marketer</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="{% url 'productdesigner' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Product Designer</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'productdesigner' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Product Designer</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    {% comment %} <a href="{% url 'sensoftengios' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Senior Software Engineer</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'senuserexpresearch' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Senior User Experience Researcher</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a> {% endcomment %}
-                    <a href="{% url 'senuserexpresearch' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Senior User Experience Researcher</h6>
-                                    <div class="about">
-                                        <span></span>
+                            </li>
+                        </a>
+                        <a href="{% url 'electricengineer' %}">
+                            <li class="list-group-item d-flex justify-content-between align-content-center">
+                                <div class="d-flex flex-row">
+                                    <div class="ml-2">
+                                        <h6 class="mb-0">Electric Engineer</h6>
+                                        <div class="about">
+                                            <span></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </a>
-                    {% comment %} <a href="{% url 'softwareengineer' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Software Engineer</h6>
-                                    <div class="about">
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </a> {% endcomment %}
-                    <a href="{% url 'electricengineer' %}">
-                        <li class="list-group-item d-flex justify-content-between align-content-center">
-                            <div class="d-flex flex-row">
-                                <div class="ml-2">
-                                    <h6 class="mb-0">Electric Engineer</h6>
-                                    <div class="about">
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </a>
-                </ul>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center" style="padding-bottom: 10%;">
-
-    </div>
-</div>
 {% endblock %}

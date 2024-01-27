@@ -22,6 +22,9 @@ body {
   border: 2px solid #f15623;
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
 }
+.list {
+  padding-left: 2rem;
+}
 .about span {
   font-size: 12px;
   margin-right: 10px;
