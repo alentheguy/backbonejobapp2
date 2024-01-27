@@ -46,9 +46,12 @@
                                     <select id="pdfSubmission" onchange="showRoleDropdown()" class="form-select">
                                         <option value="default">Default</option>
                                         <option value="dataScientist">Data Scientist</option>
-                                        <option value="productDesignEngineer">Product Design Engineer</option>
-                                        <option value="graphicDesignEngineer">Graphic Design Engineer</option>
-                                        <option value="marketingAdvisor">Marketing Advisor</option>
+                                        <option value="graphicDesigner">Graphic Designer</option>
+                                        <option value="mobileAppDev">Mobile App Development</option>
+                                        <option value="SocialMedia">Social Media Marketer</option>
+                                        <option value="productDesigner">Product Designer</option>
+                                        <option value="seniorUserExperience">Senior User Experience Researcher</option>
+                                        <option value="electricEngineer">Electric Engineer</option>
                                     </select>
                                 </div>
                                 <div class="input-group mb-3">
@@ -91,7 +94,7 @@
                                 
                                 <div id="pdfSubmissionDropdown">
                                     <div id="dataScientistFields" style="display: none;">
-                                        <label for="dataScientistField">Data Scientist Challange: Look at the resources in this
+                                        <label for="dataScientistField">Data Scientist Challenge: Look at the resources in this
                                             <a href="https://drive.google.com/drive/folders/1MRmsQvmj1NlJfvf29ZZGe1qRpYxGxtUi">link.</a>
                                                 Analyze the data and provide analyses and recommendations about the
                                                 opportunities and challenges facing the business. Not all datasets need to be included in the
@@ -103,26 +106,48 @@
                                             <div class="form-text" id="dataScientistSubmission">PDF only</div>
                                         </div>
                                     </div>
-                                    <div id="productDesignEngineerFields" style="display: none;">
-                                        <label for="productDesignEngineerField">Product Design Engineer Field:</label>
+                                    <div id="mobileAppFields" style="display: none;">
+                                        <label for="mobileAppFields">Mobile App Developer Challenge: Submit a PDF with a link to a GitHub repository for the following challenge: 
+                                            Create a mobile application that enables students to create a portfolio of their high school
+experiences. This app should allow students to showcase any of the following: their academic
+achievements, athletic participation, performing arts experience, clubs and organization
+memberships, community service hours, honors classes, and other related items.
+                                        </label>
                                         <div class="mb-3">
-                                            <label for="productDesignEngineerSubmission" class="form-label">Product Design Engineer Submission:</label>
-                                            <input class="form-control" type="file" id="productDesignEngineerSubmission" accept=".pdf">
-                                            <div class="form-text" id="productDesignEngineerSubmission">PDF only</div>
+                                            <label for="mobileAppSubmission" class="form-label"> </label>
+                                            <input class="form-control" type="file" id="mobileAppSubmission" accept=".pdf">
+                                            <div class="form-text" id="mobileAppSubmission">PDF only</div>
                                         </div>
                                     </div>
                                     <div id="graphicDesignEngineerFields" style="display: none;">
-                                        <label for="graphicDesignEngineerField">Graphic Design Engineer Field:</label>
+                                        <label for="graphicDesignEngineerField">Graphic Design Challenge: Your marketing firm has been asked to create a branding package for a new business in your
+                                            community. The branding package needs to showcase your unique style and highlight your
+                                            skills in today’s design industry. Branding package to include:
+                                            • Brand and logo design
+                                            • Infographic or brochure of the business
+                                            • Advertisements for the promotion of the business
+                                            o Magazine advertisement
+                                            o Billboard (14 feet high and 48 feet wide)
+                                            o Two different social media posts</label>
                                         <div class="mb-3">
                                             <label for="graphicDesignEngineerSubmission" class="form-label">Graphic Design Engineer Submission:</label>
                                             <input class="form-control" type="file" id="graphicDesignEngineerSubmission" accept=".pdf">
                                             <div class="form-text" id="graphicDesignEngineerSubmission">PDF only</div>
                                         </div>
                                     </div>
+                                    <!--this is the social media marketer-->
                                     <div id="marketingAdvisorFields" style="display: none;">
                                         <label for="marketingAdvisorField">Marketing Advisor Field:</label>
                                         <div class="mb-3">
-                                            <label for="marketingAdvisorSubmission" class="form-label">Marketing Advisor Submission:</label>
+                                            <label for="marketingAdvisorSubmission" class="form-label">Marketing Advisor Submission: Your marketing firm has been asked to present a social media strategy for the online summer
+                                                fundraising event for your state FBLA chapter. This event is used to secure new donors and
+                                                increase existing donor support. You are being asked to present your social media strategy to
+                                                the state FBLA Board of Directors at their annual meeting.
+                                                Address the following in your social media strategy, focusing on ONE social media platform:
+                                                • A schedule of social media posts
+                                                • An example of a social media post
+                                                • A plan to develop awareness of the fundraising event and organization. 
+                                                </label>
                                             <input class="form-control" type="file" id="marketingAdvisorSubmission" accept=".pdf">
                                             <div class="form-text" id="marketingAdvisorSubmission">PDF only</div>
                                         </div>
