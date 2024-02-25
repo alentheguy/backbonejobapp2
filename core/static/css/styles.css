@@ -1,4 +1,4 @@
-body {
+/* body {
   min-height: 110%;
 }
 .list-group {
@@ -8,7 +8,7 @@ body {
   margin-top:10px;
   border: 2px solid #777;
   padding: 20px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -60,3 +60,8 @@ input::-webkit-inner-spin-button {
     top: 3%; /* End position */
   }
 }
+@include color-mode(dark) {
+  .list-group-item {
+    color: #fff;
+  }
+} */
