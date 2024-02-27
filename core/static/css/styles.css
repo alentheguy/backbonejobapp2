@@ -1,4 +1,4 @@
-/* body {
+body {
   min-height: 110%;
 }
 .list-group {
@@ -64,4 +64,4 @@ input::-webkit-inner-spin-button {
   .list-group-item {
     color: #fff;
   }
-} */
+}
