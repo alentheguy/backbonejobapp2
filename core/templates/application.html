@@ -153,7 +153,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-light" type="submit">Submit</button>
+                                <button class="btn btn-outline-light" type="submit" value="submit" id="submit">Submit</button>
                                 <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
                             </form>
                         </div>
@@ -161,5 +161,39 @@
                 </div>
             </div>
         </div>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+            import { getFirestore, collection, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyD7lLWJyA3-h8l6oqMi2krKAhZk9IaaiD8",
+                authDomain: "backbonejobapp-8e9f0.firebaseapp.com",
+                projectId: "backbonejobapp-8e9f0",
+                storageBucket: "backbonejobapp-8e9f0.appspot.com",
+                messagingSenderId: "803740709887",
+                appId: "1:803740709887:web:afaecb2f5aaf23a94b6dca",
+                measurementId: "G-Y6GY9G3LYC"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const db = getFirestore(app);
+
+            document.getElementById("submit").addEventListener('click', function(e) {
+                e.preventDefault();
+                const docRef = addDoc(collection(db, "apps"), {
+                    FirstName: document.getElementById("First_Name").value,
+                    LastName: document.getElementById("Last_Name").value,
+                });
+                window.location.href = "{% url 'successapply' %}";
+            })
+        </script>
     </body>
 </html>
