@@ -1,5 +1,11 @@
+{% extends "base_generic.html" %}
 {% load static %}
-<!DOCTYPE html>
+{% block title %}Registration{% endblock %}
+{% block topnav %}
+    <a class="nav-link" href="{% url 'companybio' %}">Company</a>
+{% endblock %}
+{% block content %}
+{% comment %} <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
     <head>
         <link rel=icon href="{% static 'images/backbonelogo.png' %}" sizes=128x128 type=image/png>
@@ -14,8 +20,8 @@
         <script src="{% static 'javascript/scripts.js' %}"></script>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     </head>
-    <body>
-        <nav class="navbar navbar-expand sticky-top bg-body-tertiary">
+    <body> {% endcomment %}
+        {% comment %} <nav class="navbar navbar-expand sticky-top bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand">
                     <img src="{% static 'images/backbonelogo.png' %}" alt="Logo" width="30" height="30">
@@ -28,7 +34,7 @@
                 </div>
                 </div>
             </div>
-        </nav>
+        </nav> {% endcomment %}
         <div class="container-fluid">
             <div class="container text-center">
                 <div class="row">
@@ -195,5 +201,6 @@
                 window.location.href = "{% url 'successapply' %}";
             })
         </script>
-    </body>
-</html>
+    {% comment %} </body>
+</html> {% endcomment %}
+{% endblock %}

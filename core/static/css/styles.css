@@ -3,12 +3,13 @@ body {
 }
 .list-group {
   width: 100% !important;
+  color: #fff;
 }
 .list-group-item {
   margin-top:10px;
   border: 2px solid #777;
   padding: 20px;
-  color: #000;
+  color: var(--bs-list-group-color);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -18,7 +19,6 @@ body {
 }
 .list-group-item:hover {
   transform: scaleX(1.1);
-  background: #333;
   border: 2px solid #f15623;
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
 }
@@ -62,6 +62,5 @@ input::-webkit-inner-spin-button {
 }
 @include color-mode(dark) {
   .list-group-item {
-    color: #fff;
   }
 }
