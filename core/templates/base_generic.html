@@ -45,9 +45,10 @@
               {% block topnav %}
                 <a class="nav-link" href="{% url 'application' %}">Apply</a>
                 <a class="nav-link" href="{% url 'companybio' %}">Company</a>
+                <a class="nav-link" href="{% url 'login' %}">Log In</a>
               {% endblock %}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Dropdown</a>
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Display</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" data-bs-theme-value="light" role="button">Light</a></li>
                   <li><a class="dropdown-item" data-bs-theme-value="dark" role="button">Dark</a></li>
@@ -62,6 +63,7 @@
     <!-- Main content block -->
     {% block content %}
     {% endblock %}
+    <br>
     <nav class="navbar bg-body-tertiary" style="min-height: 100px;">
       <div class="container-fluid">
         <span class="navbar-text">

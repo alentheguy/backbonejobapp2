@@ -37,6 +37,9 @@ def successapply(request):
 def companybio(request):
     return render(request, 'companybio.html')
 
+def login(request):
+    return render(request, 'login.html')
+
 def application(request):
     if request.method == 'POST':
         First_Name = request.POST.get('First_Name')

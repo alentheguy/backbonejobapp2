@@ -4,18 +4,18 @@
 {% block content %}
     <!-- Header section with background color and image -->
     <div class="container-fluid">
-        <div class="row justify-content-center" style="background: #151411; min-height: 60vh;">
-            <div class="col-12 p-0 p-md-5 text-center z-0" style="max-width: 70rem; top: 50%;">
+        <div class="row justify-content-center" style="min-height: 60vh;">
+            <div class="col-12 p-0 p-md-5 text-center z-n1" style="max-width: 70rem; top: 50%;">
                 <!-- Image with animation -->
-                <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" alt="Controller" style="position: relative; animation: moveUpDown 2.5s ease-in-out infinite alternate;">
+                <img src="{% static 'images/backboneblackcontrollerback.png' %}" class="img-fluid" id="bigimage" alt="Controller" style="">
             </div>
             <!-- Button section -->
             <div class="col-12 p-5 text-center">
-                <a class="btn btn-outline-light btn-lg" href="#positions">Open Positions</a>
+                <a class="btn btn-outline-secondary btn-lg" href="#positions">Open Positions</a>
             </div>
         </div>
         <!-- Content section -->
-        <div class="row">
+        <div class="row" style="color: #fff;">
             <div class="col">
                 <!-- Content blocks -->
                 <div class="row">
@@ -53,7 +53,7 @@
         <div class="container text-center">
             <p class="p-5 lead">On this page, we are offering an opportunity to apply for an open position at Backbone. We hope you consider sending us an application so you can join the team and help do great things!</p>
             <div class="d-grid gap-2">
-                <a href="{% url 'benefits' %}" class="btn btn-outline-light btn-lg">Why work for Backbone?</a>
+                <a href="{% url 'benefits' %}" class="btn btn-outline-secondary btn-lg">Why work for Backbone?</a>
             </div>
         </div>
         <!-- Positions section -->

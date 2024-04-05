@@ -52,6 +52,18 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+#bigimage{
+  position: relative;
+  animation: opening 1.5s cubic-bezier(0, 0.71, 0.36, 1) forwards, moveUpDown 2.5s 1.5s ease-in-out infinite alternate;
+}
+@keyframes opening {
+  0% {
+    top: 200rem
+  }
+  100% {
+    top: 0rem
+  }
+}
 @keyframes moveUpDown {
   0% {
     top: 0%; /* Start position */
@@ -61,6 +73,8 @@ input::-webkit-inner-spin-button {
   }
 }
 @include color-mode(dark) {
-  .list-group-item {
+  btn {
+    --bs-btn-color: #000;
+    --bs-btn-border-color: #000;
   }
 }
