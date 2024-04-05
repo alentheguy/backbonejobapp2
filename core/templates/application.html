@@ -129,7 +129,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit">Submit</button>
+                            <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit</button>
                             <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
                         </form>
                     </div>
@@ -137,18 +137,17 @@
             </div>
             <div class="row justify-content-center">
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirm?</h1>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <p>Do you confirm your application submition?</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <a type="button" class="btn btn-outline-primary" href="{% url 'successapply' %}">Confirm</a>
                             </div>
                         </div>
                     </div>
@@ -186,8 +185,13 @@
             const docRef = addDoc(collection(db, "apps"), {
                 FirstName: document.getElementById("First_Name").value,
                 LastName: document.getElementById("Last_Name").value,
+                Email: document.getElementById("Email").value,
+                Role: document.getElementById("pdfSubmission").value,
+                LinkedIn: document.getElementById("LinkedIn").value,
+                Number: document.getElementById("Phone_Num").value,
+                Extra: document.getElementById("Text").value,
+                Resume: document.getElementById("Resume").value,
             });
-            window.location.href = "{% url 'successapply' %}";
         })
     </script>
 {% endblock %}
