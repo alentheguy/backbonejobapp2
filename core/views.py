@@ -59,3 +59,5 @@ def application(request):
         return redirect('successapply')
 
     return render(request, 'application.html')
+def help(request):
+    return render(request, 'help.html')
