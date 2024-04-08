@@ -131,6 +131,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Do you confirm your application submition?</p>
+                                <span id="file_name"></span>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -160,15 +161,15 @@
             storageBucket: "backbonejobapp-8e9f0.appspot.com",
             messagingSenderId: "803740709887",
             appId: "1:803740709887:web:afaecb2f5aaf23a94b6dca",
-            measurementId: "G-Y6GY9G3LYC"
+            measurementId: "G-Y6GY9G3LYC",
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
-        const storage = getStorage();
-        const resumeRef = ref(storage, 'resumes')
+        const storage = getStorage(app);
+        const resumeRef = ref(storage, 'resumes');
 
         document.getElementById("submit").addEventListener('click', function(e) {
             e.preventDefault();
@@ -181,10 +182,17 @@
                 Number: document.getElementById("Phone_Num").value,
                 Extra: document.getElementById("Text").value,
             });
+            // Get the file from the form
+            //const file = document.getElementById("Resume").files[0];
+
+            // Upload the file to Firebase Storage
+            //const uploadTask = resumeRef.put(file);
             file = request.FILES['Resume'];
+            document.getElementById("file_name").textContent = "file: \"" + file + "\"";
             //file_save = default_storage.save(file.name, file);
             //storage.child("resumes/" + file.name).put("media/" + file.name);
             uploadBytes(resumeRef, file);
+            //resumeRef.put(file);
             //default_storage.delete(file.name);
             //messages.success(request, "File upload in Firebase Storage successful")
         })
