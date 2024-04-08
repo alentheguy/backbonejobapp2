@@ -64,23 +64,17 @@
                             </div>
                             <div class="mb-3">
                                 <label for="Resume" class="form-label">Resume (optional)</label>
-                                <input class="form-control" type="file" id="Resume" accept=".pdf">
+                                <input name="Resume" class="form-control" type="file" id="Resume" accept=".pdf">
                                 <div class="form-text" id="Resume">PDF only</div>
                             </div>
-                            
                             <div id="pdfSubmissionDropdown">
                                 <div id="dataScientistFields" style="display: none;">
                                     <label for="dataScientistField">Data Scientist Challenge: Look at the resources in this
                                         <a href="https://drive.google.com/drive/folders/1MRmsQvmj1NlJfvf29ZZGe1qRpYxGxtUi">link.</a>
-                                            Analyze the data and provide analyses and recommendations about the
-                                            opportunities and challenges facing the business. Not all datasets need to be included in the
-                                            analysis and you are encouraged to include outside research.
-                                        </label>
-                                    <div class="mb-3">
-                                        <label for="dataScientistSubmission" class="form-label"> </label>
-                                        <input class="form-control" type="file" id="dataScientistSubmission" accept=".pdf">
-                                        <div class="form-text" id="dataScientistSubmission">PDF only</div>
-                                    </div>
+                                        Analyze the data and provide analyses and recommendations about the
+                                        opportunities and challenges facing the business. Not all datasets need to be included in the
+                                        analysis and you are encouraged to include outside research.
+                                    </label>
                                 </div>
                                 <div id="mobileAppFields" style="display: none;">
                                     <label for="mobileAppFields">Mobile App Developer Challenge: Submit a PDF with a link to a GitHub repository for the following challenge: 
@@ -89,11 +83,6 @@
                                         achievements, athletic participation, performing arts experience, clubs and organization
                                         memberships, community service hours, honors classes, and other related items.
                                     </label>
-                                    <div class="mb-3">
-                                        <label for="mobileAppSubmission" class="form-label"> </label>
-                                        <input class="form-control" type="file" id="mobileAppSubmission" accept=".pdf">
-                                        <div class="form-text" id="mobileAppSubmission">PDF only</div>
-                                    </div>
                                 </div>
                                 <div id="graphicDesignEngineerFields" style="display: none;">
                                     <label for="graphicDesignEngineerField">Graphic Design Challenge: Your marketing firm has been asked to create a branding package for a new business in your
@@ -104,12 +93,8 @@
                                         • Advertisements for the promotion of the business
                                         o Magazine advertisement
                                         o Billboard (14 feet high and 48 feet wide)
-                                        o Two different social media posts</label>
-                                    <div class="mb-3">
-                                        <label for="graphicDesignEngineerSubmission" class="form-label">Graphic Design Engineer Submission:</label>
-                                        <input class="form-control" type="file" id="graphicDesignEngineerSubmission" accept=".pdf">
-                                        <div class="form-text" id="graphicDesignEngineerSubmission">PDF only</div>
-                                    </div>
+                                        o Two different social media posts
+                                    </label>
                                 </div>
                                 <!--this is the social media marketer-->
                                 <div id="marketingAdvisorFields" style="display: none;">
@@ -123,11 +108,13 @@
                                             • A schedule of social media posts
                                             • An example of a social media post
                                             • A plan to develop awareness of the fundraising event and organization. 
-                                            </label>
-                                        <input class="form-control" type="file" id="marketingAdvisorSubmission" accept=".pdf">
-                                        <div class="form-text" id="marketingAdvisorSubmission">PDF only</div>
-                                    </div>
+                                        </label>
                                 </div>
+                            </div>
+                            <div class="mb-3" id="challengeSubmission" style="display: none;">
+                                <label for="challenge" class="form-label"> </label>
+                                <input name="Challenge" class="form-control" type="file" id="challenge" accept=".pdf">
+                                <div class="form-text" id="challenge">PDF only</div>
                             </div>
                             <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit</button>
                             <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
@@ -160,6 +147,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
         import { getFirestore, collection, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -179,6 +167,8 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
+        const storage = getStorage();
+        const resumeRef = ref(storage, 'resumes')
 
         document.getElementById("submit").addEventListener('click', function(e) {
             e.preventDefault();
@@ -190,8 +180,13 @@
                 LinkedIn: document.getElementById("LinkedIn").value,
                 Number: document.getElementById("Phone_Num").value,
                 Extra: document.getElementById("Text").value,
-                Resume: document.getElementById("Resume").value,
             });
+            file = request.FILES['Resume'];
+            //file_save = default_storage.save(file.name, file);
+            //storage.child("resumes/" + file.name).put("media/" + file.name);
+            uploadBytes(resumeRef, file);
+            //default_storage.delete(file.name);
+            //messages.success(request, "File upload in Firebase Storage successful")
         })
     </script>
 {% endblock %}

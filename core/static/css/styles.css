@@ -37,8 +37,8 @@ body {
 }
 .btn:hover {
   border-color: #f15623;
-  color: #fff;
-  background-color: #333;
+  /* color: #fff;
+  background-color: #333; */
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
 }
 .formcont {
@@ -58,10 +58,12 @@ input::-webkit-inner-spin-button {
 }
 @keyframes opening {
   0% {
-    top: 200rem
+    opacity: -5;
+    top: 100rem;
   }
   100% {
-    top: 0rem
+    opacity: 1;
+    top: 0rem;
   }
 }
 @keyframes moveUpDown {
@@ -73,8 +75,5 @@ input::-webkit-inner-spin-button {
   }
 }
 @include color-mode(dark) {
-  btn {
-    --bs-btn-color: #000;
-    --bs-btn-border-color: #000;
-  }
+  
 }

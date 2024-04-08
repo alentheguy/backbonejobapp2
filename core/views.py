@@ -1,7 +1,21 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import Application
+from pyrebase import pyrebase
 
+config = {
+    "apiKey": "AIzaSyD7lLWJyA3-h8l6oqMi2krKAhZk9IaaiD8",
+    "authDomain": "backbonejobapp-8e9f0.firebaseapp.com",
+    "projectId": "backbonejobapp-8e9f0",
+    "storageBucket": "backbonejobapp-8e9f0.appspot.com",
+    "messagingSenderId": "803740709887",
+    "appId": "1:803740709887:web:afaecb2f5aaf23a94b6dca",
+    "measurementId": "G-Y6GY9G3LYC",
+    "databaseURL": ""
+}
+firebase=pyrebase.initialize_app(config)
+authe = firebase.auth()
+database=firebase.database()
 
 # Create your views here.
 def index(request):
@@ -39,6 +53,29 @@ def companybio(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def postLogIn(request):
+    email=request.POST.get('email')
+    pasw=request.POST.get('pass')
+    try:
+        # if there is no error then signin the user with given email and password
+        user=authe.sign_in_with_email_and_password(email,pasw)
+    except:
+        message="Invalid Credentials!!Please Check your Data: " + str(email) + ", " + str(pasw)
+        return render(request,"login.html",{"message":message})
+    session_id=user['idToken']
+    request.session['uid']=str(session_id)
+    return redirect("/core/adminpage")
+
+def adminpage(request):
+    return render(request, 'adminpage.html')
+
+def logout(request):
+    try:
+        del request.session['uid']
+    except:
+        pass
+    return render(request,"index.html")
 
 def application(request):
     if request.method == 'POST':

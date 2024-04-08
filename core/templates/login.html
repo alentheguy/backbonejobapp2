@@ -1,6 +1,11 @@
 {% extends "base_generic.html" %}
 {% load static %}
 {% block content %}
+{% if message %}
+    <script>
+        alert('{{ message }}');
+    </script>
+{% endif %}
 <div class="container-fluid">
     <div class="container text-center">
         <div class="row">
@@ -11,33 +16,17 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="formcont">
-                    <form method="POST" action="{% url 'application' %}" enctype="multipart/form-data">
+                    <form method="POST" action="/core/postlogin/" ><!--enctype="multipart/form-data"-->
                         {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <div class="row g-2">
-                                <div class="col-md">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="First_Name" placeholder="John" required>
-                                        <label for="First_Name">First Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="Last_Name" placeholder="Doe" required>
-                                        <label for="Last_Name">Last Name</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="Email" placeholder="name@example.com" required>
+                            <input name="email" type="email" class="form-control" id="Email" placeholder="name@example.com" required>
                             <label for="Email">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="Password" placeholder="Password" required>
+                            <input name="pass" type="password" class="form-control" id="Password" placeholder="Password" required>
                             <label for="Password">Password</label>
                         </div>
-                        <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit">Submit</button>
+                        <button class="btn btn-outline-secondary" type="submit" value="Login" id="Login">Submit</button>
                         <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
                     </form>
                 </div>
@@ -45,4 +34,30 @@
         </div>
     </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"></script>
+<script>
+
+    // TODO: Replace the following with your app's Firebase project configuration
+    // See: https://firebase.google.com/docs/web/learn-more#config-object
+    const firebaseConfig = {
+        apiKey: "AIzaSyD7lLWJyA3-h8l6oqMi2krKAhZk9IaaiD8",
+        authDomain: "backbonejobapp-8e9f0.firebaseapp.com",
+        projectId: "backbonejobapp-8e9f0",
+        storageBucket: "backbonejobapp-8e9f0.appspot.com",
+        messagingSenderId: "803740709887",
+        appId: "1:803740709887:web:afaecb2f5aaf23a94b6dca",
+        measurementId: "G-Y6GY9G3LYC"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+    // Initialize Firebase Authentication and get a reference to the service
+    const auth = getAuth(app);
+
+    
+    
+</script>
 {% endblock %}
