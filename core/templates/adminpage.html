@@ -56,7 +56,41 @@ const apps = await getDocs(appsq);
 apps.forEach((doc) => {
     const firebaseAppData = doc.data();
     const buttons = '';
-    appstable.innerHTML += '<tr><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success">Accept</button></td><td><button type="button" class="btn btn-outline-danger">Reject</button></td></tr>';
+    
+    appstable.innerHTML += '<tr><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td></tr>';
 });
+
+</script>
+<script>
+function emailAccept(FirstName, Email){
+    const firstName = FirstName;
+    const email = Email;
+    emailjs.send("service_5yzl0nh","template_yf4mzzd",{
+        to_name: firstName,
+        from_name: "amar",
+        reply_to: email,
+        message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to work for us. We will catch up with you shortly with more details."
+    })
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.error('FAILED...', error);
+    });
+}
+function emailReject(FirstName, Email){
+    const firstName = FirstName;
+    const email = Email;
+    emailjs.send("service_5yzl0nh","template_yf4mzzd",{
+        to_name: firstName,
+        from_name: "amar",
+        reply_to: email,
+        message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying."
+    })
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.error('FAILED...', error);
+    });
+}
 </script>
 {% endblock %}
