@@ -48,8 +48,8 @@
               {% block topnav %}
                 <a class="nav-link" href="{% url 'application' %}">Apply</a>
                 <a class="nav-link" href="{% url 'companybio' %}">Company</a>
-                <a class="nav-link" href="{% url 'login' %}" id="logElement">Log In</a>
                 <a class="nav-link" href="{% url 'help' %}">Help</a>
+                <a class="nav-link" href="{% url 'login' %}" id="logElement">Log In</a>
                 <a class="nav-link" href="{% url 'adminpage' %}" id="authElement" style="display: none;">My Page</a>
               {% endblock %}
               <li class="nav-item dropdown">
@@ -70,7 +70,7 @@
     {% block content %}
     {% endblock %}
     <br>
-    <nav class="navbar bg-body-tertiary" style="min-height: 100px; position absolute; bottom 0;">
+    <nav class="navbar bg-body-tertiary" style="min-height: 100px; position absolute; bottom 0; flex-grow: 1;">
       <div class="container-fluid">
         <span class="navbar-text">
           All information was directly sourced from 

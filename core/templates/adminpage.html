@@ -1,5 +1,10 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% block topnav %}
+    <a class="nav-link" href="{% url 'application' %}">Apply</a>
+    <a class="nav-link" href="{% url 'companybio' %}">Company</a>
+    <a class="nav-link" href="{% url 'help' %}">Help</a>
+{% endblock %}
 {% block content %}
 <div class="container text-center">
     <div class="container text-center">
@@ -16,6 +21,7 @@
                 <th>Phone</th>
                 <th>Accept</th>
                 <th>Reject</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody id="appstable">
@@ -27,7 +33,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-import { getFirestore, collection, doc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, collection, doc, getDocs, query, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -54,43 +60,62 @@ const appsq = query(collection(db, "apps"), where("FirstName", "!=", null, "&&",
 
 const apps = await getDocs(appsq);
 apps.forEach((doc) => {
+    console.log(doc.id);
     const firebaseAppData = doc.data();
-    const buttons = '';
     
-    appstable.innerHTML += '<tr><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td></tr>';
+    appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
 });
-
-</script>
-<script>
-function emailAccept(FirstName, Email){
-    const firstName = FirstName;
-    const email = Email;
-    emailjs.send("service_5yzl0nh","template_yf4mzzd",{
-        to_name: firstName,
-        from_name: "amar",
-        reply_to: email,
-        message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to work for us. We will catch up with you shortly with more details."
-    })
-    .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-        console.error('FAILED...', error);
+//document.getElementById("deleteapp").addEventListener('click', function(e) {
+//    await deleteDoc(doc(db, "apps", id));
+//})
+function deleteDocument(docId) {
+    // Delete the document using the Firestore SDK
+    firestore.collection("apps").doc(docId).delete().then(function() {
+        console.log("Document successfully deleted!");
+        // Remove the corresponding table row from the HTML
+        var row = document.getElementById(docId);
+        row.parentNode.removeChild(row);
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
     });
 }
+</script>
+<script>
+function emailAccept(FirstName, Email, id){
+    if(confirm("Are you sure you want to accept " + FirstName + "'s application?") == true ){
+        const firstName = FirstName;
+        const email = Email;
+        emailjs.send("service_5yzl0nh","template_yf4mzzd",{
+            to_name: firstName,
+            from_name: "amar",
+            reply_to: email,
+            message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to work for us. We will catch up with you shortly with more details."
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            document.getElementById("status" + id).innerHTML = "Accepted";
+        }, function(error) {
+            console.error('FAILED...', error);
+        });
+    }
+}
 function emailReject(FirstName, Email){
-    const firstName = FirstName;
-    const email = Email;
-    emailjs.send("service_5yzl0nh","template_yf4mzzd",{
-        to_name: firstName,
-        from_name: "amar",
-        reply_to: email,
-        message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying."
-    })
-    .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-        console.error('FAILED...', error);
-    });
+    if(confirm("Are you sure you want to reject " + FirstName + "'s application?") == true ){
+        const firstName = FirstName;
+        const email = Email;
+        emailjs.send("service_5yzl0nh","template_yf4mzzd",{
+            to_name: firstName,
+            from_name: "amar",
+            reply_to: email,
+            message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying."
+        })
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            document.getElementById("status" + id).innerHTML = "Rejected";
+        }, function(error) {
+            console.error('FAILED...', error);
+        });
+    }
 }
 </script>
 {% endblock %}
