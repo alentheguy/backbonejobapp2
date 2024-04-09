@@ -1,9 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
 {% block title %}Registration{% endblock %}
-{% block topnav %}
-    <a class="nav-link" href="{% url 'companybio' %}">Company</a>
-{% endblock %}
 {% block content %}
     <div class="container-fluid">
         <div class="container text-center">
@@ -154,6 +151,16 @@
     })();
     </script>
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "M-nUp84mxxeGtfN2E",
+        });
+    })();
+    </script>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
@@ -176,7 +183,7 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig, name="uploadapp");
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
         const storage = getStorage(app);
@@ -195,21 +202,16 @@
             });
             const firstName = document.getElementById("First_Name").value;
             const email = document.getElementById("Email").value;
-            console.log("First Name:", firstName);
-            console.log("Email:", email);
-              
-                emailjs.send("service_5yzl0nh","template_got1nmk",{
-                    to_name: firstName,
-                    from_name: "amar",
-                    reply_to: email,
-                    })
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                    }, function(error) {
-                        console.error('FAILED...', error);
-                    });
-
-
+            emailjs.send("service_5yzl0nh","template_got1nmk",{
+                to_name: firstName,
+                from_name: "amar",
+                reply_to: email,
+            })
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.error('FAILED...', error);
+            });
             // Get the file from the form
             //const file = document.getElementById("Resume").files[0];
 
@@ -225,5 +227,6 @@
             //messages.success(request, "File upload in Firebase Storage successful")
             
         })
+
     </script>
 {% endblock %}

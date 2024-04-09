@@ -48,8 +48,9 @@
               {% block topnav %}
                 <a class="nav-link" href="{% url 'application' %}">Apply</a>
                 <a class="nav-link" href="{% url 'companybio' %}">Company</a>
-                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                <a class="nav-link" href="{% url 'login' %}" id="logElement">Log In</a>
                 <a class="nav-link" href="{% url 'help' %}">Help</a>
+                <a class="nav-link" href="{% url 'adminpage' %}" id="authElement" style="display: none;">My Page</a>
               {% endblock %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Display</a>
@@ -154,4 +155,48 @@
   })
 })()
   </script>
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+import { getFirestore, collection, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyD7lLWJyA3-h8l6oqMi2krKAhZk9IaaiD8",
+    authDomain: "backbonejobapp-8e9f0.firebaseapp.com",
+    projectId: "backbonejobapp-8e9f0",
+    storageBucket: "backbonejobapp-8e9f0.appspot.com",
+    messagingSenderId: "803740709887",
+    appId: "1:803740709887:web:afaecb2f5aaf23a94b6dca",
+    measurementId: "G-Y6GY9G3LYC",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth();
+const user = auth.currentUser;
+if(user !== null){
+  console.log(user.email);
+} else {
+  console.log("no one's logged in");
+}
+    if (user) {
+      console.log("someones logged in");
+        document.getElementById("logElement").style.display = "none";
+        document.getElementById("authElement").style.display = "block";
+    } else {
+      console.log("someones logged out");
+        document.getElementById("logElement").style.display = "block";
+        document.getElementById("authElement").style.display = "none";
+    }
+</script>
 </html>

@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import Application
 from pyrebase import pyrebase
+import firebase_admin
+from firebase_admin import firestore, credentials
+
 
 config = {
     "apiKey": "AIzaSyD7lLWJyA3-h8l6oqMi2krKAhZk9IaaiD8",
@@ -13,9 +16,14 @@ config = {
     "measurementId": "G-Y6GY9G3LYC",
     "databaseURL": ""
 }
+
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
+cred = credentials.ApplicationDefault()
+app = firebase_admin.initialize_app(cred, name='adminapp')
+#db = firestore.client()
+
 
 # Create your views here.
 def index(request):
@@ -68,6 +76,8 @@ def postLogIn(request):
     return redirect("/core/adminpage")
 
 def adminpage(request):
+    #apps = db.child("apps").stream()
+
     return render(request, 'adminpage.html')
 
 def logout(request):

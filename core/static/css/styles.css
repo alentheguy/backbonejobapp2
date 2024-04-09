@@ -36,7 +36,7 @@ body {
   transform: scale(1.04);
 }
 .btn:hover {
-  border-color: #f15623;
+  border-color: blue;
   /* color: #fff;
   background-color: #333; */
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
@@ -75,5 +75,7 @@ input::-webkit-inner-spin-button {
   }
 }
 @include color-mode(dark) {
-  
+  btn.hover{
+    border-color: #f15623;
+  }
 }
