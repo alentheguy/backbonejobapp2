@@ -52,6 +52,7 @@
                 <a class="nav-link" href="{% url 'login' %}" id="logElement">Log In</a>
                 <a class="nav-link" href="{% url 'adminpage' %}" id="authElement" style="display: none;">My Page</a>
               {% endblock %}
+              <!-- Color Mode Toggle -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Display</a>
                 <ul class="dropdown-menu">
@@ -70,11 +71,14 @@
     {% block content %}
     {% endblock %}
     <br>
+    <!-- Citation Nav -->
     <nav class="navbar bg-body-tertiary" style="min-height: 100px; position absolute; bottom 0; flex-grow: 1;">
       <div class="container-fluid">
         <span class="navbar-text">
           All information was directly sourced from 
-          <a href="https://playbackbone.com/" target="_blank">Backbone</a>.
+          <a href="https://playbackbone.com/" target="_blank">Backbone</a>, 
+          <a href="https://www.ziprecruiter.com/Salaries/26-Hr-Yearly-Salary" target="_blank">ZipRecruiter</a>,
+          <a href="https://colorlib.com/wp/website-color-statistics/" target="_blank">Colorlib</a>.
         </span>
       </div>
     </nav>

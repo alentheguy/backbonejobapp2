@@ -25,7 +25,12 @@ body {
   box-shadow: 0 0 10px rgba(13, 110, 253, 1);
 }
 .list {
+
   padding-left: 2rem;
+}
+.list li{
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .about span {
   font-size: 12px;
