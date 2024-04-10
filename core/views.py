@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import Application
 from pyrebase import pyrebase
-import firebase_admin
-from firebase_admin import firestore, credentials
 
 
 config = {
@@ -20,9 +18,6 @@ config = {
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
 database=firebase.database()
-cred = credentials.ApplicationDefault()
-app = firebase_admin.initialize_app(cred, name='adminapp')
-#db = firestore.client()
 
 
 # Create your views here.
