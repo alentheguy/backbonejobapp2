@@ -63,7 +63,7 @@ apps.forEach((doc) => {
     console.log(doc.id);
     const firebaseAppData = doc.data();
     
-    appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
+    appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
 });
 //document.getElementById("deleteapp").addEventListener('click', function(e) {
 //    await deleteDoc(doc(db, "apps", id));
