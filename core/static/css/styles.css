@@ -25,7 +25,6 @@ body {
   box-shadow: 0 0 10px rgba(13, 110, 253, 1);
 }
 .list {
-
   padding-left: 2rem;
 }
 .list li{
@@ -79,6 +78,15 @@ hr{
   opacity: 0.75;
   border: 1px solid #0d6efd;
 }
+.fadefromside{
+  opacity: 0; /* Initially hide the element */
+  transform: translateX(-100%); /* Move element off-screen to the left */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition */
+}
+.fadefromside.visible{
+  opacity: 1; /* Make the element visible */
+  transform: translateX(0); /* Move the element into view */
+}
 @keyframes opening {
   0% {
     opacity: -5;
@@ -110,5 +118,5 @@ hr{
 }
 [data-bs-theme=dark] hr{
   opacity: 1;
-  border: 1px solid #dc3545;
+  border: 1px solid #f15623;
 }

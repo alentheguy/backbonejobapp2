@@ -87,7 +87,7 @@ function emailAccept(FirstName, Email, id){
         const email = Email;
         emailjs.send("service_5yzl0nh","template_yf4mzzd",{
             to_name: firstName,
-            from_name: "amar",
+            from_name: "Backbone",
             reply_to: email,
             message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to work for us. We will catch up with you shortly with more details."
         })
@@ -105,7 +105,7 @@ function emailReject(FirstName, Email){
         const email = Email;
         emailjs.send("service_5yzl0nh","template_yf4mzzd",{
             to_name: firstName,
-            from_name: "amar",
+            from_name: "Backbone",
             reply_to: email,
             message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying."
         })

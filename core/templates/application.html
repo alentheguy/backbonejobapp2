@@ -194,7 +194,7 @@
             const email = document.getElementById("Email").value;
             emailjs.send("service_5yzl0nh","template_got1nmk",{
                 to_name: firstName,
-                from_name: "amar",
+                from_name: "Backbone",
                 reply_to: email,
             })
             .then(function(response) {
@@ -207,11 +207,11 @@
 
             // Upload the file to Firebase Storage
             //const uploadTask = resumeRef.put(file);
-            file = request.FILES['Resume'];
-            document.getElementById("file_name").textContent = "file: \"" + file + "\"";
+            //file = request.FILES['Resume'];
+            //document.getElementById("file_name").textContent = "file: \"" + file + "\"";
             //file_save = default_storage.save(file.name, file);
             //storage.child("resumes/" + file.name).put("media/" + file.name);
-            uploadBytes(resumeRef, file);
+            //uploadBytes(resumeRef, file);
             //resumeRef.put(file);
             //default_storage.delete(file.name);
             //messages.success(request, "File upload in Firebase Storage successful")
