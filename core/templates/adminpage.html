@@ -93,6 +93,28 @@
             <br>
             <button class="btn btn-outline-secondary" type="submit" value="submit" id="saveNotes">Save Notes</button>
         </form>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="acceptOption">
+                    <label class="form-check-label" for="acceptOption">
+                        Accept Application
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rejectOption">
+                    <label class="form-check-label" for="rejectOption">
+                        Reject Application
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <label for="interviewDate">Interview Date:</label>
+                <input type="date" id="interviewDate" name="interviewDate" value="2024-06-26" min="2024-06-26">
+            </div>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="sendEmail">Send Email</button>
+        </form>
     </div>
     <a class="btn btn-outline-secondary" href="{% url 'log' %}">Log Out</a>
 </div>
@@ -155,22 +177,6 @@ document.getElementById("submit").addEventListener('click', function(e) {
 })
 document.getElementById("saveNotes").addEventListener('click', function(e) {
     e.preventDefault();
-    //const docRef = addDoc(collection(db, "apps"), {
-    //    Notes: document.getElementById("personalNotes").value,
-    //});
-
-    //const reference = ref(db, 'apps', curID);
-    //doc(reference, {
-    //    Notes: document.getElementById("personalNotes").value
-    //});
-
-    //apps.forEach((doc) => {
-    //    console.log(doc.id);
-    //    const appData = doc.data();
-    //    if(doc.id == curID){
-    //        appData.Notes = personalNotes.value;
-    //    }
-    //});
     apps.forEach((docu) => {
         console.log(docu.id, curID);
         const appData = docu.data();
@@ -188,6 +194,19 @@ document.getElementById("saveNotes").addEventListener('click', function(e) {
             });
         }
     });
+})
+document.getElementById("sendEmail").addEventListener('click', function(e) {
+    e.preventDefault();  
+
+
+
+
+
+
+
+
+
+    
 })
 //document.getElementById("deleteapp").addEventListener('click', function(e) {
 //    await deleteDoc(doc(db, "apps", id));
