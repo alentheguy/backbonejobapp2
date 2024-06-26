@@ -36,7 +36,7 @@
                     <option value="default">Select Applicant</option>
                 </select>
             </div>
-            <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Load Info</button>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit">Load Info</button>
         </form>
     </div>
     <div class="formcont">
@@ -82,12 +82,17 @@
                 <input class="form-control-plaintext" id="extraNotes" value="" type="text" aria-label="readonly input example" readonly>
             </div>
         </div>
-        <div class="row">
-            <label for="personalNotes" class="col-sm-2 col-form-label">Notes:</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" id="personalNotes" value="" type="text" rows="3"></textarea>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <label for="personalNotes" class="col-sm-2 col-form-label">Notes:</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="personalNotes" value="" type="text" rows="3"></textarea>
+                </div>
             </div>
-        </div>
+            <br>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="saveNotes">Save Notes</button>
+        </form>
     </div>
     <a class="btn btn-outline-secondary" href="{% url 'log' %}">Log Out</a>
 </div>
@@ -95,7 +100,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-import { getFirestore, collection, doc, getDoc, getDocs, query, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, collection, doc, getDoc, setDoc, getDocs, query, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -143,6 +148,44 @@ document.getElementById("submit").addEventListener('click', function(e) {
             appliedRole.value = appData.Role;
             linkedIn.value = appData.LinkedIn;
             extraNotes.value = appData.Extra;
+            personalNotes.value = appData.Notes;
+            console.log(appData.Notes);
+        }
+    });
+})
+document.getElementById("saveNotes").addEventListener('click', function(e) {
+    e.preventDefault();
+    //const docRef = addDoc(collection(db, "apps"), {
+    //    Notes: document.getElementById("personalNotes").value,
+    //});
+
+    //const reference = ref(db, 'apps', curID);
+    //doc(reference, {
+    //    Notes: document.getElementById("personalNotes").value
+    //});
+
+    //apps.forEach((doc) => {
+    //    console.log(doc.id);
+    //    const appData = doc.data();
+    //    if(doc.id == curID){
+    //        appData.Notes = personalNotes.value;
+    //    }
+    //});
+    apps.forEach((docu) => {
+        console.log(docu.id, curID);
+        const appData = docu.data();
+        if(docu.id == curID){
+            console.log("notes", document.getElementById("personalNotes").value);
+            setDoc(doc(db, 'apps', curID), {
+                Notes: personalNotes.value,
+                FirstName: appData.FirstName,
+                LastName: appData.LastName,
+                Email: appData.Email,
+                Number: appData.Number,
+                Role: appData.Role,
+                LinkedIn: appData.LinkedIn,
+                Extra: appData.Extra
+            });
         }
     });
 })
