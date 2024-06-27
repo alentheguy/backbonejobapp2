@@ -12,7 +12,7 @@
             <h1>Applicants</h1>
         </div>
     </div>
-    <table class="table table-striped">
+    {% comment %} <table class="table table-striped">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -26,14 +26,103 @@
         </thead>
         <tbody id="appstable">
         </tbody>
-    </table>
+    </table> {% endcomment %}
+    <div class="formcont">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3 custom-select">
+                <label for="appList" class="form-label">Select Applicant:</label>
+                <select id="appList" onchange="curID = this.value; console.log(curID);" class="form-select">
+                    <option value="default">Select Applicant</option>
+                </select>
+            </div>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit">Load Info</button>
+        </form>
+    </div>
+    <div class="formcont">
+        <div class="row">
+            <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="firstName" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="lastName" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="emailAddress" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="emailAddress" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="phoneNumber" class="col-sm-2 col-form-label">Phone Number:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="phoneNumber" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="appliedRole" class="col-sm-2 col-form-label">Role:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="appliedRole" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="linkedIn" class="col-sm-2 col-form-label">LinkedIn:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="linkedIn" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <label for="extraNotes" class="col-sm-2 col-form-label">Extra:</label>
+            <div class="col-sm-10">
+                <input class="form-control-plaintext" id="extraNotes" value="" type="text" aria-label="readonly input example" readonly>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <label for="personalNotes" class="col-sm-2 col-form-label">Notes:</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="personalNotes" value="" type="text" rows="3"></textarea>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="saveNotes">Save Notes</button>
+        </form>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="acceptOption">
+                    <label class="form-check-label" for="acceptOption">
+                        Accept Application
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rejectOption">
+                    <label class="form-check-label" for="rejectOption">
+                        Reject Application
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <label for="interviewDate">Interview Date:</label>
+                <input type="date" id="interviewDate" name="interviewDate" value="2024-06-26" min="2024-06-26">
+            </div>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="sendEmail">Send Email</button>
+        </form>
+    </div>
     <a class="btn btn-outline-secondary" href="{% url 'log' %}">Log Out</a>
 </div>
-<script type="module">
+<script type="module" >
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-import { getFirestore, collection, doc, getDocs, query, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, collection, doc, getDoc, setDoc, getDocs, query, where, deleteDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -63,22 +152,76 @@ apps.forEach((doc) => {
     console.log(doc.id);
     const firebaseAppData = doc.data();
     
-    appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
+    //appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
+    appList.innerHTML += '<option value="' + doc.id + '">' + firebaseAppData.FirstName + ' ' + firebaseAppData.LastName + '</option>';
+
 });
+document.getElementById("submit").addEventListener('click', function(e) {
+    e.preventDefault();   
+    //const curID = "";
+    apps.forEach((doc) => {
+        console.log(doc.id);
+        const appData = doc.data();
+        if(doc.id == curID){
+            firstName.value = appData.FirstName;
+            lastName.value = appData.LastName;
+            emailAddress.value = appData.Email;
+            phoneNumber.value = appData.Number;
+            appliedRole.value = appData.Role;
+            linkedIn.value = appData.LinkedIn;
+            extraNotes.value = appData.Extra;
+            personalNotes.value = appData.Notes;
+            console.log(appData.Notes);
+        }
+    });
+})
+document.getElementById("saveNotes").addEventListener('click', function(e) {
+    e.preventDefault();
+    apps.forEach((docu) => {
+        console.log(docu.id, curID);
+        const appData = docu.data();
+        if(docu.id == curID){
+            console.log("notes", document.getElementById("personalNotes").value);
+            setDoc(doc(db, 'apps', curID), {
+                Notes: personalNotes.value,
+                FirstName: appData.FirstName,
+                LastName: appData.LastName,
+                Email: appData.Email,
+                Number: appData.Number,
+                Role: appData.Role,
+                LinkedIn: appData.LinkedIn,
+                Extra: appData.Extra
+            });
+        }
+    });
+})
+document.getElementById("sendEmail").addEventListener('click', function(e) {
+    e.preventDefault();  
+
+
+
+
+
+
+
+
+
+    
+})
 //document.getElementById("deleteapp").addEventListener('click', function(e) {
 //    await deleteDoc(doc(db, "apps", id));
 //})
-function deleteDocument(docId) {
-    // Delete the document using the Firestore SDK
-    firestore.collection("apps").doc(docId).delete().then(function() {
-        console.log("Document successfully deleted!");
-        // Remove the corresponding table row from the HTML
-        var row = document.getElementById(docId);
-        row.parentNode.removeChild(row);
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
-}
+//function deleteDocument(docId) {
+//    // Delete the document using the Firestore SDK
+//    firestore.collection("apps").doc(docId).delete().then(function() {
+//        console.log("Document successfully deleted!");
+//        // Remove the corresponding table row from the HTML
+//        var row = document.getElementById(docId);
+//        row.parentNode.removeChild(row);
+//    }).catch(function(error) {
+//        console.error("Error removing document: ", error);
+//    });
+//}
 </script>
 <script>
 function emailAccept(FirstName, Email, id){
