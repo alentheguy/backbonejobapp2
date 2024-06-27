@@ -33,13 +33,16 @@
             <div class="mb-3 custom-select">
                 <label for="appList" class="form-label">Select Applicant:</label>
                 <select id="appList" onchange="curID = this.value; console.log(curID);" class="form-select">
-                    <option value="default">Select Applicant</option>
+                    <option value="default" disabled selected value>Select Applicant</option>
                 </select>
             </div>
             <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit">Load Info</button>
         </form>
     </div>
     <div class="formcont">
+        <div class="row">
+            <h1 id="appStatus">Application Status</h1>
+        </div>
         <div class="row">
             <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
             <div class="col-sm-10">
@@ -82,40 +85,82 @@
                 <input class="form-control-plaintext" id="extraNotes" value="" type="text" aria-label="readonly input example" readonly>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <button type="button" class="btn btn-secondary download-btn btn-lg" id="resumeDown" href="" download>
+                    <img src="{% static 'images/file-earmark-arrow-down.svg' %}" alt="Logo" width="30" height="30">
+                    Download Resume
+                </button>
+            </div>
+            <div class="col-12 col-md-2">
+                <br>
+            </div>
+            <div class="col-12 col-md-5">
+                <button type="button" class="btn btn-secondary download-btn btn-lg" id="capstoneDown" href="" download>
+                    <img src="{% static 'images/file-earmark-arrow-down.svg' %}" alt="Logo" width="30" height="30">
+                    Download Capstone Challenge
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="formcont">
         <form method="POST">
             {% csrf_token %}
             <div class="row">
                 <label for="personalNotes" class="col-sm-2 col-form-label">Notes:</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="personalNotes" value="" type="text" rows="3"></textarea>
+                    <textarea class="form-control" id="personalNotes" value="" type="text" rows="3" disabled></textarea>
                 </div>
             </div>
             <br>
-            <button class="btn btn-outline-secondary" type="submit" value="submit" id="saveNotes">Save Notes</button>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="saveNotes" disabled>Save Notes</button>
         </form>
+    </div>
+    <div class="formcont">
+        <div class="row">
+            <h1>Set Application Status</h1>
+        </div>
         <form method="POST">
             {% csrf_token %}
             <div class="row">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="acceptOption">
-                    <label class="form-check-label" for="acceptOption">
-                        Accept Application
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rejectOption">
-                    <label class="form-check-label" for="rejectOption">
-                        Reject Application
-                    </label>
+                <div class="col" style="text-align: left;">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="acceptOption" onchange="toggleDateInput()" disabled>
+                        <label class="form-check-label" for="acceptOption">
+                            Schedule Interview
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="rejectOption" onchange="toggleDateInput()" disabled>
+                        <label class="form-check-label" for="rejectOption">
+                            Reject Application
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <label for="interviewDate">Interview Date:</label>
-                <input type="date" id="interviewDate" name="interviewDate" value="2024-06-26" min="2024-06-26">
+                <div class="col-12 col-md-6">
+                    <label for="interviewDate" id="interviewDateLabel" hidden>Interview Date:</label>
+                    <input type="date" id="interviewDate" name="interviewTime" min="2024-06-26" hidden required>
+                </div>
+                <div class="col-12 col-md-6">
+                    <label for="interviewTime" id="interviewTimeLabel" hidden>Interview Time:</label>
+                    <input type="time" id="interviewTime" name="interviewTime" hidden required>
+                </div>
             </div>
-            <button class="btn btn-outline-secondary" type="submit" value="submit" id="sendEmail">Send Email</button>
+            <br>
+            <div class="row">
+                <label for="emailNotes" class="col-sm-2 col-form-label" id="emailNotesLabel" hidden>Notes:</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="emailNotes" value="" type="text" rows="3" hidden></textarea>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-outline-secondary" type="submit" value="submit" id="sendEmail" disabled>Send Email</button>
         </form>
     </div>
+    <br>
     <a class="btn btn-outline-secondary" href="{% url 'log' %}">Log Out</a>
 </div>
 <script type="module" >
@@ -149,7 +194,6 @@ const appsq = query(collection(db, "apps"), where("FirstName", "!=", null, "&&",
 
 const apps = await getDocs(appsq);
 apps.forEach((doc) => {
-    console.log(doc.id);
     const firebaseAppData = doc.data();
     
     //appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';appstable.innerHTML += '<tr id="' + doc.id + '"><td>' + firebaseAppData.FirstName + '</td><td>' + firebaseAppData.LastName + '</td><td>' + firebaseAppData.Email + '</td><td>' + firebaseAppData.Number + '</td><td><button type="button" class="btn btn-outline-success acceptb" onclick=\'emailAccept(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\", \"' + doc.id + '\")\'>Accept</button></td><td><button type="button" class="btn btn-outline-danger rejectb" onclick=\'emailReject(\"' + firebaseAppData.FirstName + '\", \"' + firebaseAppData.Email + '\")\'>Reject</button></td><td id="status' + doc.id + '"></td></tr>';
@@ -160,9 +204,9 @@ document.getElementById("submit").addEventListener('click', function(e) {
     e.preventDefault();   
     //const curID = "";
     apps.forEach((doc) => {
-        console.log(doc.id);
         const appData = doc.data();
         if(doc.id == curID){
+            appStatus.innerHTML = "Application Status: " + appData.Status;
             firstName.value = appData.FirstName;
             lastName.value = appData.LastName;
             emailAddress.value = appData.Email;
@@ -171,14 +215,19 @@ document.getElementById("submit").addEventListener('click', function(e) {
             linkedIn.value = appData.LinkedIn;
             extraNotes.value = appData.Extra;
             personalNotes.value = appData.Notes;
-            console.log(appData.Notes);
+            resumeDown.href = "www.google.com";
+            capstoneDown.href = "www.google.com";
         }
     });
+    personalNotes.disabled = false;
+    saveNotes.disabled = false;
+    acceptOption.disabled = false;
+    rejectOption.disabled = false;
+    sendEmail.disabled = false;
 })
 document.getElementById("saveNotes").addEventListener('click', function(e) {
     e.preventDefault();
     apps.forEach((docu) => {
-        console.log(docu.id, curID);
         const appData = docu.data();
         if(docu.id == curID){
             console.log("notes", document.getElementById("personalNotes").value);
@@ -190,23 +239,55 @@ document.getElementById("saveNotes").addEventListener('click', function(e) {
                 Number: appData.Number,
                 Role: appData.Role,
                 LinkedIn: appData.LinkedIn,
-                Extra: appData.Extra
+                Extra: appData.Extra,
+                Status: appData.Status,
             });
         }
     });
 })
 document.getElementById("sendEmail").addEventListener('click', function(e) {
-    e.preventDefault();  
-
-
-
-
-
-
-
-
-
-    
+    e.preventDefault();
+    if(acceptOption.checked){
+        const emailnotes = emailNotes.value;
+        const date = interviewDate.value;
+        const time = interviewTime.value;
+        apps.forEach((docu) => {
+            const appData = docu.data();
+            if(docu.id == curID){
+                setDoc(doc(db, 'apps', curID), {
+                    Notes: appData.Notes,
+                    FirstName: appData.FirstName,
+                    LastName: appData.LastName,
+                    Email: appData.Email,
+                    Number: appData.Number,
+                    Role: appData.Role,
+                    LinkedIn: appData.LinkedIn,
+                    Extra: appData.Extra,
+                    Status: "Awaiting Interview",
+                });
+                emailAccept(appData.FirstName, appData.Email, curID, date, time, emailnotes);
+            }
+        });
+    } else {
+        const emailnotes = emailNotes.value;
+        apps.forEach((docu) => {
+            const appData = docu.data();
+            if(docu.id == curID){
+                setDoc(doc(db, 'apps', curID), {
+                    Notes: appData.Notes,
+                    FirstName: appData.FirstName,
+                    LastName: appData.LastName,
+                    Email: appData.Email,
+                    Number: appData.Number,
+                    Role: appData.Role,
+                    LinkedIn: appData.LinkedIn,
+                    Extra: appData.Extra,
+                    Status: "Rejected",
+                });
+                emailReject(appData.FirstName, appData.Email, emailnotes);
+            }
+        });
+    }
 })
 //document.getElementById("deleteapp").addEventListener('click', function(e) {
 //    await deleteDoc(doc(db, "apps", id));
@@ -224,7 +305,27 @@ document.getElementById("sendEmail").addEventListener('click', function(e) {
 //}
 </script>
 <script>
-function emailAccept(FirstName, Email, id){
+function toggleDateInput(){
+    const acceptOption = document.getElementById('acceptOption');
+    const interviewDate = document.getElementById('interviewDate');
+    
+    if (acceptOption.checked) {
+        interviewDateLabel.hidden = false;
+        interviewTimeLabel.hidden = false;
+        emailNotesLabel.hidden = false;
+        interviewDate.hidden = false;
+        interviewTime.hidden = false;
+        emailNotes.hidden = false;
+    } else {
+        interviewDateLabel.hidden = true;
+        interviewTimeLabel.hidden = true;
+        emailNotesLabel.hidden = true;
+        interviewDate.hidden = true;
+        interviewTime.hidden = true;
+        emailNotes.hidden = true;
+    }
+}
+function emailAccept(FirstName, Email, id, date, time, notes){
     if(confirm("Are you sure you want to accept " + FirstName + "'s application?") == true ){
         const firstName = FirstName;
         const email = Email;
@@ -232,7 +333,8 @@ function emailAccept(FirstName, Email, id){
             to_name: firstName,
             from_name: "Backbone",
             reply_to: email,
-            message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to work for us. We will catch up with you shortly with more details."
+            message: "Thank you for applying to Backbone. We are so happy to announce that you have been chosen to move on to the interview stage of your application. We will catch up with you shortly with more details of the online interview and zoom link. The interview is scheduled at "  + date + ", " + time + " (24 hr time).\n\nAdditional Notes From Reviewer:\n" + notes + "\n\nWe are excited to meet you!"
+
         })
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
@@ -242,7 +344,7 @@ function emailAccept(FirstName, Email, id){
         });
     }
 }
-function emailReject(FirstName, Email){
+function emailReject(FirstName, Email, notes){
     if(confirm("Are you sure you want to reject " + FirstName + "'s application?") == true ){
         const firstName = FirstName;
         const email = Email;
@@ -250,7 +352,7 @@ function emailReject(FirstName, Email){
             to_name: firstName,
             from_name: "Backbone",
             reply_to: email,
-            message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying."
+            message: "Thank you for applying to Backbone. We enjoyed reviewing your application, however, at this time, we unfortunanely cannot offer you a job. We wish you luck in other opportunities, and thank you for applying.\n\nAdditional Notes From Reviewer:\n" + notes
         })
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
