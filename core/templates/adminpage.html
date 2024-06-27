@@ -223,7 +223,6 @@ document.getElementById("submit").addEventListener('click', function(e) {
     saveNotes.disabled = false;
     acceptOption.disabled = false;
     rejectOption.disabled = false;
-    sendEmail.disabled = false;
 })
 document.getElementById("saveNotes").addEventListener('click', function(e) {
     e.preventDefault();
@@ -309,20 +308,19 @@ function toggleDateInput(){
     const acceptOption = document.getElementById('acceptOption');
     const interviewDate = document.getElementById('interviewDate');
     
+    sendEmail.disabled = false;
+    emailNotesLabel.hidden = false;
+    emailNotes.hidden = false;
     if (acceptOption.checked) {
         interviewDateLabel.hidden = false;
         interviewTimeLabel.hidden = false;
-        emailNotesLabel.hidden = false;
         interviewDate.hidden = false;
         interviewTime.hidden = false;
-        emailNotes.hidden = false;
     } else {
         interviewDateLabel.hidden = true;
         interviewTimeLabel.hidden = true;
-        emailNotesLabel.hidden = true;
         interviewDate.hidden = true;
         interviewTime.hidden = true;
-        emailNotes.hidden = true;
     }
 }
 function emailAccept(FirstName, Email, id, date, time, notes){
