@@ -55,8 +55,56 @@
         <!-- Call-to-action section -->
         <div class="container text-center">
             <p class="p-5 lead">On this page, we are offering an opportunity to apply for an open position at Backbone. We hope you consider sending us an application so you can join the team and help do great things!</p>
-            <div class="d-grid gap-2">
-                <a href="{% url 'benefits' %}" class="btn btn-outline-secondary btn-lg">Why work for Backbone?</a>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <a href="{% url 'benefits' %}" style="text-decoration: none;">
+                        <div class="card" style="width: 18rem; height: 100%">
+                            <div style="height: 40%">
+                                <img src="{% static 'images/Bonuses.png' %}" class="card-img-top" alt="Image" style="width: 100%; cal-align: -webkit-baseline-middle;overflow-clip-margin: content-box;
+                                overflow: clip;
+                                overflow-x: ;
+                                overflow-y: ;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Benefits</h5>
+                                <p class="card-text">Explore Backbone's world-class benefits designed to help you and your family live well.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="{% url 'benefits' %}" style="text-decoration: none;">
+                        <div class="card" style="width: 18rem; height: 100%">
+                            <img src="{% static 'images/Work Culture.png' %}" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Culture</h5>
+                                <p class="card-text">We will only achieve our mission if we live our culture, which starts with applying a growth mindset.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="{% url 'benefits' %}" style="text-decoration: none;">
+                        <div class="card" style="width: 18rem; height: 100%">
+                            <img src="{% static 'images/Diversity and Inclusion.png' %}" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Diversity and Inclusion</h5>
+                                <p class="card-text">We are committed to celebrating the diversity around us and its power to drive us forward together.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a href="{% url 'benefits' %}" style="text-decoration: none;">
+                        <div class="card" style="width: 18rem; height: 100%">
+                            <img src="{% static 'images/Flexible Work.png' %}" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Flexible Work</h5>
+                                <p class="card-text">At Microsoft, we value flexibility as part of our hybrid workplace so that you can feel empowered to do your best work.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- Positions section -->

@@ -66,8 +66,8 @@
                                 <label for="Text">Anything else we should know?</label>
                             </div>
                             <div class="mb-3">
-                                <label for="Resume" class="form-label">Resume</label>
-                                <input name="Resume" class="form-control" type="file" id="Resume" accept=".pdf">
+                                <label for="Resume" class="form-label">Resume *</label>
+                                <input name="Resume" class="form-control" type="file" id="Resume" accept=".pdf" required>
                                 <div class="form-text" id="Resume">PDF only</div>
                             </div>
                             <div id="pdfSubmissionDropdown">
@@ -201,10 +201,11 @@
             });
             const firstName = document.getElementById("First_Name").value;
             const email = document.getElementById("Email").value;
-            emailjs.send("service_5yzl0nh","template_got1nmk",{
+            emailjs.send("service_5yzl0nh","template_yf4mzzd",{
                 to_name: firstName,
                 from_name: "Backbone",
                 reply_to: email,
+                message: "Thank you for applying to Backbone. We will get back to you shortly!",
             })
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
