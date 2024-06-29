@@ -1,11 +1,85 @@
 {% extends 'base_generic.html' %}
 {% load static %}
 {% block content %}
-    <div class="container">
+<div class="container">
     <div class="row">
         <h1 class="display-1 p-5">Frequently Asked Questions</h1>
     </div>
-    <div class="row">
+    <div class="accordion" id="accordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h1>What is the starting salary for this position?</h1>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <p class="p-1 lead"><strong>The starting salary depends on various factors, including your experience and qualifications. Please refer to the job description or contact our HR department for more information.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h1>How can I apply for this job?</h1>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <p class="p-1 lead"><strong>You can apply for the job through our online application portal. Visit our careers page for more details and to submit your application.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <h1>What benefits are offered with this position?</h1>
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <p class="p-1 lead"><strong>We offer a comprehensive benefits package including health insurance, retirement plans, paid time off, and more. Specific details can be provided upon request or during the interview process.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                    <h1>Is there room for advancement within the company?</h1>
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <p class="p-1 lead"><strong>Yes, we encourage career growth and development within our organization. Opportunities for advancement are available based on performance and merit.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                    <h1>How can I contact the HR department for further inquiries?</h1>
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <p class="p-1 lead"><strong>You can contact our HR department at <a href="mailto:backbonejobapply@gmail.com">backbonejobapply@gmail.com</a> for any additional questions or assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="row">
         <div class="col-12">
             <h3 class="display-6">What is the starting salary for this position?</h3>
             <p class="p-1 lead">The starting salary depends on various factors, including your experience and qualifications. Please refer to the job description or contact our HR department for more information.</p>
@@ -31,7 +105,7 @@
             <h3 class="display-6">How can I contact the HR department for further inquiries?</h3>
             <p class="p-1 lead">You can contact our HR department at <a href="mailto:backbonejobapply@gmail.com">backbonejobapply@gmail.com</a> for any additional questions or assistance.</p>
         </div>
-    </div>
+    </div> {% endcomment %}
     <div class="row">
         <h1 id="appStatus">Send Email</h1>
         <div class="formcont">

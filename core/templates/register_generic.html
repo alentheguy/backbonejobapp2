@@ -10,15 +10,15 @@
     </div>
     <!-- Container for additional content -->
     <div class="container" style="font-weight: 300;">
+        <!-- Additional content block (e.g., bio) -->
+        <div class="row" style="padding-bottom: 10%;">
+            {% block bio %}{% endblock %}
+        </div>
         <div class="row p-5">
             <!-- Apply button -->
             <div class="d-grid gap-2">
                 <a href="{% url 'application' %}" class="btn btn-outline-secondary btn-lg">Apply</a>
             </div>
-        </div>
-        <!-- Additional content block (e.g., bio) -->
-        <div class="row" style="padding-bottom: 10%;">
-            {% block bio %}{% endblock %}
         </div>
     </div>
 {% endblock %}

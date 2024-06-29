@@ -55,7 +55,13 @@
                                 <input type="number" class="form-control" id="Phone_Num" placeholder="0123456789" min="0" step="1" onkeydown="javascript: return event.keyCode == 69 ? false : true">
                                 <label for="Phone_Num">Phone Number</label>
                             </div>
-                            <div class="form-floating">
+                            <div class="mb-3">
+                                <label for="Essay" class="form-label">
+                                    Please tell us about a time you successfully carried a project from start to finish with little to no supervision. What were the 2-3 best practices learned in order to be successful? What did you enjoy about the autonomy and what, if anything, did you think was lacking? <em>(1000 character max.)</em>
+                                </label>
+                                <textarea class="form-control" placeholder="Leave essay here *" id="Essay" style="height: 200px" maxlength="1000" required></textarea>
+                            </div>
+                            <div class="form-floating mb-3">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="Text" style="height: 100px"></textarea>
                                 <label for="Text">Anything else we should know?</label>
                             </div>
@@ -188,6 +194,7 @@
                 Role: document.getElementById("pdfSubmission").value,
                 LinkedIn: document.getElementById("LinkedIn").value,
                 Number: document.getElementById("Phone_Num").value,
+                Essay: document.getElementById("Essay").value,
                 Extra: document.getElementById("Text").value,
                 Notes: "",
                 Status: "Pending Review",
