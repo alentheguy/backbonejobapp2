@@ -2,12 +2,23 @@
 {% load static %}
 {% block title %}Registration{% endblock %}
 {% block content %}
+    <div class="row justify-content-left banner align-items-center">
+        <div class="col-1">
+        </div>
+        <div class="col-10 col-md-7 p-0 p-md-5 text-left z-n1" style="max-width: 70rem; top: 50%;">
+            <h1 class="display-3" style="padding: 10px;">Unlock Your Next Chapter</h1>
+            <p class="p-2 lead">Join our team at Backbone where integrity, innovation, and collaboration drive everthing we do. We're looking for passionate individuals who share our commitment to excillence and are eager to make a difference.</p>
+        </div>
+    </div>
     <div class="container-fluid">
+        <br>
+        <br>
         <div class="container text-center">
             <div class="row">
-                <h1>Registration Form</h1>
+                <h1>Application Form</h1>
             </div>
         </div>
+        <br>
         <div class="container" style="margin-bottom: 1.25rem;">
             <div class="row justify-content-center">
                 <div class="col-12">
@@ -122,6 +133,7 @@
                             </div>
                             <button class="btn btn-outline-secondary" type="submit" value="submit" id="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit</button>
                             <a class="p-3" href="{{request.META.HTTP_REFERER|escape}}">back</a>
+                            <a class="p-3" href="{% url 'login' %}" id="logElement">Admin Log In</a>
                         </form>
                     </div>
                 </div>

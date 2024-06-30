@@ -7,7 +7,9 @@ body {
 }
 .banner {
   min-height: 40vh; 
-  background-color: rgba(222, 226, 230, 0.75); 
+  color: white;
+  /* background-color: rgba(222, 226, 230, 0.75);  */
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3));
   z-index: -1;
 }
 .accordion-button:not(.collapsed) {
@@ -77,6 +79,14 @@ body {
   background-color: transparent;
   box-shadow: 0 0 10px rgba(13, 110, 253, 1);
 }
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+.card:hover {
+  box-shadow: 0 0 10px rgba(13, 110, 253, 1);
+}
+/* 0 1.6px 3.6px rgba(0,0,0,0.15), 0 0.3px 0.9px rgba(0,0,0,0.108); */
 .formcont {
   margin-top: 10px;
   border: 2px solid #333;
@@ -156,6 +166,9 @@ hr{
 }
 [data-bs-theme=dark] .list-group-item:hover {
   border: 2px solid #f15623;
+  box-shadow: 0 0 10px rgba(241, 87, 35, 1);
+}
+[data-bs-theme=dark] .card:hover {
   box-shadow: 0 0 10px rgba(241, 87, 35, 1);
 }
 [data-bs-theme=dark] hr{

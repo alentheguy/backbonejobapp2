@@ -1,6 +1,14 @@
 {% extends 'base_generic.html' %}
 {% load static %}
 {% block content %}
+<div class="row justify-content-left banner">
+    <div class="col-1">
+    </div>
+    <div class="col-10 col-md-7 p-0 p-md-5 text-left z-n1" style="max-width: 70rem; top: 50%;">
+        <h1 class="display-6" style="padding: 10px;">We're here for your support</h1>
+        <p class="p-2 lead">Look at some of our frequently asked questions, or contact us for specific help. Our support team works 24/7 to make sure you know everything you need to!</p>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <h1 class="display-1 p-5">Frequently Asked Questions</h1>
@@ -8,11 +16,11 @@
     <div class="accordion" id="accordion">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <h1>What is the starting salary for this position?</h1>
                 </button>
             </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordion">
                 <div class="accordion-body">
                     <p class="p-1 lead"><strong>The starting salary depends on various factors, including your experience and qualifications. Please refer to the job description or contact our HR department for more information.</p>
                 </div>

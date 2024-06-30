@@ -7,9 +7,9 @@
 {% endblock %}
 {% block content %}
 <div class="container text-center">
-    <div class="container text-center">
+    <div class="container text-center my-5">
         <div class="row">
-            <h1>Applications</h1>
+            <h1 class="display-2">Admin Page</h1>
         </div>
     </div>
     {% comment %} <table class="table table-striped">
@@ -32,7 +32,7 @@
             {% csrf_token %}
             <div class="mb-3 custom-select">
                 <label for="appList" class="form-label">Select Applicant:</label>
-                <select id="appList" onchange="curID = this.value; console.log(curID);" class="form-select">
+                <select id="appList" onchange="curID = this.value;" class="form-select">
                     <option value="default" disabled selected value>Select Applicant</option>
                 </select>
             </div>
@@ -106,10 +106,15 @@
     </div>
     <div class="formcont">
         <div class="row">
-            <h1 id="appStatus">Essay Response:</h1>
+            <h1>Essay Response:</h1>
         </div>
         <div class="row">
-            <p class="p-5 lead text-left" id="essayResponse"></p>
+            <p class="p-5 lead text-start responsive-text" style="line-height: 150%;">
+                Prompt: Please tell us about a time you successfully carried a project from start to finish with little to no supervision. What were the 2-3 best practices learned in order to be successful? What did you enjoy about the autonomy and what, if anything, did you think was lacking?
+            </p>
+        </div>
+        <div class="row">
+            <p class="p-5 lead text-start" id="essayResponse" style="line-height: 150%;"></p>
         </div>
     </div>
     <div class="formcont">
@@ -238,7 +243,6 @@ document.getElementById("saveNotes").addEventListener('click', function(e) {
     apps.forEach((docu) => {
         const appData = docu.data();
         if(docu.id == curID){
-            console.log("notes", document.getElementById("personalNotes").value);
             setDoc(doc(db, 'apps', curID), {
                 Notes: personalNotes.value,
                 FirstName: appData.FirstName,

@@ -1,17 +1,22 @@
 <!-- Position Bio Template. -->
 {% extends "base_generic.html" %}
 {% block content %}
-    <!-- Main content block -->
-    <div class="container text-center">
-        <div class="row">
-            <!-- Heading for specific position -->
-            <h1 class="display-1 p-5">{% block position %}{% endblock %}</h1>
+    <div class="row justify-content-left banner">
+        <div class="col-1">
+        </div>
+        <div class="col-10 col-md-7 p-0 p-md-5 text-left z-n1" style="max-width: 70rem; top: 50%;">
+            <h1 class="display-3" style="padding: 10px;">{% block position %}{% endblock %}</h1>
+            <p class="p-2 lead">Discover the transformative opportunities awaiting you at Backbone. Join a team where your talents thrive and your contributions shape the future.</p>
         </div>
     </div>
+    <br>
+    <br>
+    <!-- Main content block -->
     <!-- Container for additional content -->
     <div class="container" style="font-weight: 300;">
         <!-- Additional content block (e.g., bio) -->
         <div class="row" style="padding-bottom: 10%;">
+            <h3>Description</h3>
             {% block bio %}{% endblock %}
         </div>
         <div class="row p-5">

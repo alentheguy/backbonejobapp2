@@ -2,48 +2,31 @@
 {% extends 'base_generic.html' %}
 {% load static %}
 {% block content %}
-
-    {% comment %} 
-        <div class="row">
-            <h1 class="display-1 p-5">Backbone</h1>
-        </div> {% endcomment %}
-
-        <div class="row justify-content-left banner" style="background-image: url({% static 'images/hexagonalpattern.png' %}); background-repeat: no-repeat; background-position: right center; background-size: 100vh;">
-            <div class="col-0 col-md-1">
-            </div>
-            <div class="col-10 col-md-7 p-0 p-md-5 text-left z-n1" style="max-width: 70rem; top: 50%;">
-                <h1 style="padding: 10px;">About Us</h1>
-                <p class="p-2 lead">Backbone offers a mobile gaming controller that is cloud-gaming and remote-play compatible. It is a low-power, low-latency gaming device that works with the iPhone and does not require charging, allowing for responsive gaming anywhere. Backbone allows gamers to simply snap their phone into the Backbone One controller, launch the Backbone App, and begin playing mobile, console, or PC games from any location.</p>
-            </div>
-        </div> 
-
-        {% comment %} <div class="row">
-            <h1 class="display-6 p-1">About Us</h1>
-            <p class="p-1 lead">Backbone offers a mobile gaming controller that is cloud-gaming and remote-play compatible. It is a low-power, low-latency gaming device that works with the iPhone and does not require charging, allowing for responsive gaming anywhere. Backbone allows gamers to simply snap their phone into the Backbone One controller, launch the Backbone App, and begin playing mobile, console, or PC games from any location.</p>
-        </div> {% endcomment %}
-        <div class="container">
-        <hr>
-        {% comment %} <div class="row">
-            <h1 class="display-6 p-1">Mission</h1>
-            <p class="p-1 lead">Backbone's core mission is centered around revolutionizing the product development process for the fashion and consumer goods industries. By providing a powerful, user-friendly platform, Backbone aims to streamline collaboration, enhance efficiency, and enable teams to bring their creative visions to life with ease. Their commitment to innovation and continuous improvement drives their pursuit of simplifying complex workflows, ultimately empowering brands to create exceptional products and thrive in a competitive market.</p>
-        </div> {% endcomment %}
-    <br>
-    <div class = "row" style = "font-weight: 300;">
-        <div class="col-12 col-md-6 text-left align-items-left">
-            <div class="row align-items-left">
-                <h1>
-                    Mission
-                </h1>
-                <p class="p-3 lead">Backbone's core mission is centered around revolutionizing the product development process for the fashion and consumer goods industries. By providing a powerful, user-friendly platform, Backbone aims to streamline collaboration, enhance efficiency, and enable teams to bring their creative visions to life with ease. Their commitment to innovation and continuous improvement drives their pursuit of simplifying complex workflows, ultimately empowering brands to create exceptional products and thrive in a competitive market.</p>
-            </div>
+    <div class="row justify-content-left banner">
+        <div class="col-1">
         </div>
-        
-        <div class="col-12 col-md-6">
-            <img src="{% static 'images/Mission.png' %}" class="img-fluid" alt="Image">
+        <div class="col-10 col-md-7 p-0 p-md-5 text-left z-n1" style="max-width: 70rem; top: 50%;">
+            <h1 style="padding: 10px;">About Us</h1>
+            <p class="p-2 lead">Backbone offers a mobile gaming controller that is cloud-gaming and remote-play compatible. It is a low-power, low-latency gaming device that works with the iPhone and does not require charging, allowing for responsive gaming anywhere. Backbone allows gamers to simply snap their phone into the Backbone One controller, launch the Backbone App, and begin playing mobile, console, or PC games from any location.</p>
         </div>
-        
     </div>
-    <br>
+    <div class="container">
+        <br>
+        <br>
+        <div class = "row" style = "font-weight: 300;">
+            <div class="col-12 col-md-6 text-left align-items-left">
+                <div class="row align-items-left">
+                    <h1>
+                        Mission
+                    </h1>
+                    <p class="p-3 lead">Backbone's core mission is centered around revolutionizing the product development process for the fashion and consumer goods industries. By providing a powerful, user-friendly platform, Backbone aims to streamline collaboration, enhance efficiency, and enable teams to bring their creative visions to life with ease. Their commitment to innovation and continuous improvement drives their pursuit of simplifying complex workflows, ultimately empowering brands to create exceptional products and thrive in a competitive market.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <img src="{% static 'images/Mission.png' %}" class="img-fluid" alt="Image">
+            </div>
+        </div>
+        <br>
         <hr>
         <div class="row" style="font-weight: 300;">
             <h1 style="padding: 10px;">Core Values</h1>
@@ -53,6 +36,7 @@
                 <li><strong>Efficiency:</strong> Backbone is dedicated to streamlining processes and optimizing performance, ensuring that both its products and its team members operate at the highest level of efficiency.</li>
                 <li><strong>Customer-Centricity:</strong> At the core of Backbone's values is a commitment to understanding and addressing the unique needs of its clients, delivering exceptional experiences and tailored solutions.</li>
                 <li><strong>Growth and development:</strong> Backbone invests in the personal and professional growth of its employees, offering ample opportunities for skill enhancement, learning, and career progression.</li>
+            </ul>
         </div>
         <hr>
         <div class="row">
